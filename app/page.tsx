@@ -194,9 +194,10 @@ const experience = [
 
 
 // Self-contained fictional demo workspaces; changes stay in the visitor's browser session.
+type DemoRow = { name: string; sub: string; status: string; amount?: number };
 function InteractiveAppPreview({ kind }: { kind: number }) {
   const [query, setQuery] = useState("");
-  const [items, setItems] = useState([
+  const [items, setItems] = useState<DemoRow[][]>([
     [{ name: "Northstar Studio", sub: "Website redesign · $4,800", status: "Qualified" }, { name: "Orbit Labs", sub: "Automation setup · $2,400", status: "Proposal" }, { name: "Willow & Co.", sub: "Discovery call · $1,200", status: "New" }, { name: "Atlas Retail", sub: "Monthly support · $950", status: "Won" }],
     [{ name: "Figma subscription", sub: "Software · Oct 25", status: "Paid", amount: 24 }, { name: "Contractor invoice", sub: "Services · Oct 24", status: "Pending", amount: 420 }, { name: "Office supplies", sub: "Operations · Oct 21", status: "Paid", amount: 86 }, { name: "Travel reimbursement", sub: "Travel · Oct 19", status: "Pending", amount: 175 }],
     [{ name: "Maya Chen", sub: "09:00 AM · Discovery call", status: "Confirmed" }, { name: "Daniel Rivera", sub: "10:30 AM · Strategy session", status: "Requested" }, { name: "Avery Smith", sub: "01:00 PM · Project kickoff", status: "Confirmed" }, { name: "Jamie Lee", sub: "03:30 PM · Follow-up", status: "Requested" }],
@@ -228,7 +229,7 @@ function InteractiveAppPreview({ kind }: { kind: number }) {
       <div className="va-real-main">
         <div className="va-real-top"><div><span className="va-real-crumb">WORKSPACE / {labels[kind].toUpperCase()}</span><h5>{labels[kind]}</h5></div><div className="va-real-top-right"><span className="va-real-live"><span /> Interactive sandbox</span><span className="va-real-avatar">BJ</span></div></div>
         <div className="va-real-kpis">
-          <div><span>{kind === 1 ? "TOTAL RECORDED" : kind === 4 ? "ITINERARY STOPS" : "TOTAL RECORDS"}</span><strong>{kind === 1 ? `$${rows.reduce<number>((sum, r) => sum + ("amount" in r && typeof r.amount === "number" ? r.amount : 0), 0).toLocaleString()}` : String(total).padStart(2,"0")}</strong><small>Live sample data</small></div>
+          <div><span>{kind === 1 ? "TOTAL RECORDED" : kind === 4 ? "ITINERARY STOPS" : "TOTAL RECORDS"}</span><strong>{kind === 1 ? `$${rows.reduce((sum, r) => sum + (r.amount ?? 0), 0).toLocaleString()}` : String(total).padStart(2,"0")}</strong><small>Live sample data</small></div>
           <div><span>{["DEALS WON", "PAID ENTRIES", "CONFIRMED", "COMPLETED", "VISITED"][kind]}</span><strong>{String(completed).padStart(2,"0")}</strong><small>Click a status to update</small></div>
           <div><span>{["OPEN OPPORTUNITIES", "UNPAID ENTRIES", "AWAITING CONFIRMATION", "IN PROGRESS", "UPCOMING"][kind]}</span><strong>{String(total - completed).padStart(2,"0")}</strong><small>Automatically recalculated</small></div>
         </div>
