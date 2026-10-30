@@ -1754,3 +1754,27 @@ img {
   .va-contact-primary { width: 100%; font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .va-contact-primary { transition: none; } }
+
+/* Contact / footer separation: prevent animated contact panel from obscuring footer. */
+.va-footer {
+  position: relative;
+  z-index: 5;
+  isolation: isolate;
+  margin-top: 28px;
+}
+.va-footer-inner {
+  min-height: 100px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+@media (max-width: 760px) {
+  .va-footer { margin-top: 20px; }
+  .va-footer-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 14px;
+    min-height: 0;
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+}
