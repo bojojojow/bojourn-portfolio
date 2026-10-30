@@ -1460,3 +1460,19 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .va-morph-section { transform: none !important; }
 }
+
+/* Restored dramatic scroll reveals, without viewport-height sticky panels. */
+.va-morph-section {
+  position: relative;
+  min-height: 0;
+  transform-origin: center top;
+  will-change: transform, clip-path;
+  backface-visibility: hidden;
+}
+.va-contact { min-height: 0; }
+@media (max-width: 760px) {
+  .va-morph-section { will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .va-morph-section { transform: none !important; clip-path: none !important; }
+}
