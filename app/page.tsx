@@ -377,7 +377,7 @@ export default function Home() {
               />
               <div className="va-photo-bottom">
                 <span>BOJOURN / VIRTUAL ASSISTANT</span>
-                <span>001 — PROFILE</span>
+                <span>BOJOURN®</span>
               </div>
             </div>
             <div className="va-photo-stamp">
@@ -785,14 +785,6 @@ export default function Home() {
               </a>
               <a className="va-email-link" href="mailto:bojourn3@gmail.com">
                 bojourn3@gmail.com <ArrowUpRight size={24} />
-              </a>
-              <a
-                className="va-github-link"
-                href="https://github.com/bojojojow"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github size={17} /> GITHUB <ArrowUpRight size={15} />
               </a>
             </div>
           </div>
