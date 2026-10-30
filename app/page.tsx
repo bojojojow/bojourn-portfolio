@@ -157,29 +157,21 @@ export default function Home() {
   const experienceRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  // Full-screen, reversible scene transitions: each new scene wipes over the previous.
-  const aboutScroll = useScroll({ target: aboutRef, offset: ["start end", "start 18%"] });
-  const workScroll = useScroll({ target: workRef, offset: ["start end", "start 18%"] });
-  const experienceScroll = useScroll({ target: experienceRef, offset: ["start end", "start 18%"] });
-  const contactScroll = useScroll({ target: contactRef, offset: ["start end", "start 18%"] });
-  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
-  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
-  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
-  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
-  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [220, 0]);
-  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [220, 0]);
-  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [220, 0]);
-  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [220, 0]);
+  // Lightweight, reversible entrance motion. Normal document flow stays intact.
+  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 95%", "start 50%"] });
+  const workScroll = useScroll({ target: workRef, offset: ["start 95%", "start 50%"] });
+  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 95%", "start 50%"] });
+  const contactScroll = useScroll({ target: contactRef, offset: ["start 95%", "start 50%"] });
+  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [38, 0]);
+  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [38, 0]);
+  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [38, 0]);
+  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [38, 0]);
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroTextY = useTransform(heroProgress, [0, 1], [0, -260]);
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.65], [1, 0]);
-  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -180]);
-  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.45]);
-  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -14]);
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, -45]);
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.95], [1, 0.8]);
+  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -30]);
+  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.04]);
+  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -2]);
   const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -284,7 +276,7 @@ export default function Home() {
         </div>
       </section>
 
-      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { scale: aboutScale, y: aboutY, clipPath: aboutClip } }>
+      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { y: aboutY } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>01 / WHAT I BRING TO THE TABLE</span>
@@ -325,7 +317,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { scale: workScale, y: workY, clipPath: workClip } }>
+      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { y: workY } }>
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
@@ -460,7 +452,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { scale: experienceScale, y: experienceY, clipPath: experienceClip } }>
+      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { y: experienceY } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>03 / CAREER TIMELINE</span>
@@ -535,7 +527,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { scale: contactScale, y: contactY, clipPath: contactClip } }>
+      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { y: contactY } }>
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
             <span>04 / LET'S CONNECT</span>
