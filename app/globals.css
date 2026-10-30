@@ -1476,3 +1476,15 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .va-morph-section { transform: none !important; clip-path: none !important; }
 }
+
+/* Cinematic reveal polish: stronger visual depth, same document layout. */
+.va-morph-section {
+  transform-origin: 50% 10%;
+  contain: paint;
+}
+@media (max-width: 760px) {
+  .va-morph-section { contain: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .va-morph-section { will-change: auto; contain: none; }
+}
