@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { useRef, useState } from "react";
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -151,6 +151,21 @@ export default function Home() {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, -165]);
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.85], [1, 0.12]);
+  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -90]);
+  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 0.78]);
+  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -6]);
+  const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
+  };
 
   const currentProject = projects[activeProject];
   const ProjectIcon = currentProject.icon;
@@ -162,7 +177,7 @@ export default function Home() {
     <main className="va-site">
       <header className="va-header">
         <div className="va-shell va-header-inner">
-          <a href="#home" className="va-logo">
+          <a href="#home" onClick={goToTop} className="va-logo">
             BOJOURN<span>®</span>
           </a>
 
@@ -189,9 +204,9 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="home" className="va-hero">
+      <section ref={heroRef} id="home" className="va-hero">
         <div className="va-shell va-hero-grid">
-          <div className="va-hero-content">
+          <motion.div className="va-hero-content" style={reduceMotion ? undefined : { y: heroTextY, opacity: heroTextOpacity }}>
             <div className="va-eyebrow">
               <span className="va-status-dot" />
               VIRTUAL ASSISTANT / DIGITAL OPERATIONS
@@ -222,9 +237,9 @@ export default function Home() {
               <span><MapPin size={14} /> CAGAYAN DE ORO, PH</span>
               <span><span className="va-mini-dot" /> OPEN TO REMOTE OPPORTUNITIES</span>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="va-hero-photo-wrap">
+          <motion.div className="va-hero-photo-wrap" style={reduceMotion ? undefined : { y: heroPhotoY, scale: heroPhotoScale, rotate: heroPhotoRotate }}>
             <div className="va-photo">
               <img
                 src="/portrait.png"
@@ -241,7 +256,7 @@ export default function Home() {
               <span>YOUR EXTRA<br />PAIR OF HANDS</span>
             </div>
             <div className="va-photo-side-label">BEHIND THE SCENES, AHEAD OF THE GAME.</div>
-          </div>
+          </motion.div>
         </div>
         <div className="va-hero-bottom va-shell">
           <span>SCROLL TO EXPLORE</span>
@@ -543,7 +558,7 @@ export default function Home() {
         <div className="va-shell va-footer-inner">
           <span>© 2026 BOJOURN®</span>
           <span>VIRTUAL ASSISTANT / DIGITAL OPERATIONS</span>
-          <a href="#home">BACK TO TOP ↑</a>
+          <a href="#home" onClick={goToTop}>BACK TO TOP ↑</a>
         </div>
       </footer>
     </main>
