@@ -1741,3 +1741,16 @@ img {
   .va-real-toggle button,
   .va-real-bars > div span { transition: none !important; }
 }
+
+/* Client conversion: compact service cues and a clear email CTA. */
+.va-contact-services { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 22px; }
+.va-contact-services span { border: 1px solid rgba(22,32,24,.38); border-radius: 3px; padding: 8px 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .025em; }
+.va-contact-primary { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; width: fit-content; max-width: 100%; padding: 15px 18px; margin-bottom: 20px; background: var(--ink); color: var(--lime); font-family: var(--mono); font-weight: 700; font-size: 11px; text-decoration: none; transition: transform .15s ease, background-color .15s ease; }
+.va-contact-primary:hover { transform: translateY(-2px); }
+.va-contact-primary:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+@media (max-width: 760px) {
+  .va-contact-services { gap: 6px; margin-top: -8px; }
+  .va-contact-services span { font-size: 9px; padding: 7px 8px; }
+  .va-contact-primary { width: 100%; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .va-contact-primary { transition: none; } }
