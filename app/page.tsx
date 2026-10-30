@@ -152,6 +152,28 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const workRef = useRef<HTMLElement>(null);
+  const experienceRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
+
+  // Each section unfolds as its top crosses the viewport.
+  const aboutScroll = useScroll({ target: aboutRef, offset: ["start end", "start start"] });
+  const workScroll = useScroll({ target: workRef, offset: ["start end", "start start"] });
+  const experienceScroll = useScroll({ target: experienceRef, offset: ["start end", "start start"] });
+  const contactScroll = useScroll({ target: contactRef, offset: ["start end", "start start"] });
+  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 1], [0.83, 1]);
+  const workScale = useTransform(workScroll.scrollYProgress, [0, 1], [0.82, 1]);
+  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 1], [0.82, 1]);
+  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 1], [0.82, 1]);
+  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 1], ["inset(10% 8% round 36px)", "inset(0% 0% round 0px)"]);
+  const workClip = useTransform(workScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
+  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
+  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
+  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [110, 0]);
+  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [130, 0]);
+  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [130, 0]);
+  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [130, 0]);
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -265,7 +287,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="va-about">
+      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { scale: aboutScale, y: aboutY, clipPath: aboutClip } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>01 / WHAT I BRING TO THE TABLE</span>
@@ -304,9 +326,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="work" className="va-work">
+      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { scale: workScale, y: workY, clipPath: workClip } }>
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
@@ -439,9 +461,9 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="experience" className="va-experience">
+      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { scale: experienceScale, y: experienceY, clipPath: experienceClip } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>03 / CAREER TIMELINE</span>
@@ -514,9 +536,9 @@ export default function Home() {
             {showAllExperience ? <X size={16} /> : <ArrowDownRight size={17} />}
           </button>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="contact" className="va-contact">
+      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { scale: contactScale, y: contactY, clipPath: contactClip } }>
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
             <span>04 / LET'S CONNECT</span>
@@ -552,7 +574,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <footer className="va-footer">
         <div className="va-shell va-footer-inner">
