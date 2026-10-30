@@ -157,29 +157,33 @@ export default function Home() {
   const experienceRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  // Cinematic scroll reveals in normal document flow (no pinned sections).
-  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 98%", "start 24%"] });
-  const workScroll = useScroll({ target: workRef, offset: ["start 98%", "start 24%"] });
-  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 98%", "start 24%"] });
-  const contactScroll = useScroll({ target: contactRef, offset: ["start 98%", "start 24%"] });
-  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
-  const workY = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
-  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
-  const contactY = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
-  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
-  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
-  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
-  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
-  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
+  // High-impact reversible 3D reveals, without sticky sections or forced heights.
+  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 100%", "start 38%"] });
+  const workScroll = useScroll({ target: workRef, offset: ["start 100%", "start 38%"] });
+  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 100%", "start 38%"] });
+  const contactScroll = useScroll({ target: contactRef, offset: ["start 100%", "start 38%"] });
+  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
+  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
+  const aboutRotate = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
+  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const workY = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
+  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
+  const workRotate = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
+  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
+  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
+  const experienceRotate = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
+  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const contactY = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
+  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
+  const contactRotate = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
+  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroTextY = useTransform(heroProgress, [0, 1], [0, -115]);
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.9], [1, 0.25]);
-  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -85]);
-  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.24]);
-  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -8]);
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, -150]);
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.9], [1, 0.3]);
+  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -110]);
+  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.32]);
+  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -10]);
   const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -284,7 +288,7 @@ export default function Home() {
         </div>
       </section>
 
-      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { y: aboutY, scale: aboutScale, clipPath: aboutClip } }>
+      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { y: aboutY, scale: aboutScale, rotateX: aboutRotate, clipPath: aboutClip } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>01 / WHAT I BRING TO THE TABLE</span>
@@ -325,7 +329,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { y: workY, scale: workScale, clipPath: workClip } }>
+      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { y: workY, scale: workScale, rotateX: workRotate, clipPath: workClip } }>
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
@@ -460,7 +464,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { y: experienceY, scale: experienceScale, clipPath: experienceClip } }>
+      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { y: experienceY, scale: experienceScale, rotateX: experienceRotate, clipPath: experienceClip } }>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>03 / CAREER TIMELINE</span>
@@ -535,7 +539,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { y: contactY, scale: contactScale, clipPath: contactClip } }>
+      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { y: contactY, scale: contactScale, rotateX: contactRotate, clipPath: contactClip } }>
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
             <span>04 / LET'S CONNECT</span>
