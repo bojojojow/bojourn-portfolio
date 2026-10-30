@@ -1488,3 +1488,21 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .va-morph-section { will-change: auto; contain: none; }
 }
+
+/* Cinematic v2: dramatic 3D panel reveals without pinning or layout shifts. */
+.va-morph-section {
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, clip-path;
+}
+.va-site { perspective: 1400px; }
+.va-contact { min-height: 0 !important; }
+@media (max-width: 760px) {
+  .va-site { perspective: 1800px; }
+  .va-morph-section { will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .va-site { perspective: none; }
+  .va-morph-section { transform: none !important; clip-path: none !important; }
+}
