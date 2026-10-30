@@ -1427,3 +1427,13 @@ img {
     padding-bottom: 55px;
   }
 }
+
+/* Interactive project morph and career transitions */
+.va-project-tab { position: relative; isolation: isolate; overflow: hidden; background: #222822; }
+.va-project-tab.active { background: #222822; color: #171a18; }
+.va-tab-morph-bg { position: absolute; inset: 0; z-index: -1; background: #b9f36a; pointer-events: none; }
+.va-tab-content { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; }
+.va-tab-number { font-size: 10px; opacity: .65; }
+.va-project-panel { animation: none; transform-origin: center top; }
+.va-timeline-detail { animation: none; }
+@media (prefers-reduced-motion: reduce) { .va-project-panel, .va-timeline-detail { animation: none !important; } }
