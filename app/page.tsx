@@ -1,330 +1,385 @@
 
 import {
+  ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   BarChart3,
   BriefcaseBusiness,
-  Code2,
-  Download,
   Github,
   Globe2,
   Mail,
   MapPin,
   Plane,
+  Sparkles,
 } from "lucide-react";
-
-const projects = [
-  {
-    number: "01",
-    category: "DATA & REPORTING",
-    title: "Sales Performance Reporting",
-    description:
-      "Maintaining Excel-based sales reports, conversion metrics, leaderboards, and performance scorecards to support daily business operations.",
-    tags: ["Microsoft Excel", "PivotTables", "Reporting"],
-    icon: BarChart3,
-    link: null,
-    linkText: "Portfolio demonstration",
-  },
-  {
-    number: "02",
-    category: "PERSONAL PROJECT",
-    title: "ByaheTaBai",
-    description:
-      "An AI-assisted group travel planning application that brings itineraries, traveler management, and expense tracking into one place.",
-    tags: ["Next.js", "Supabase", "AI-Assisted Development"],
-    icon: Plane,
-    link: "https://byahetabai.vercel.app/",
-    linkText: "Visit live application",
-  },
-  {
-    number: "03",
-    category: "WEB OPERATIONS",
-    title: "WordPress Website Operations",
-    description:
-      "Updating and maintaining existing WordPress websites, publishing content, managing plugins, and working with visual page builders.",
-    tags: ["WordPress", "Elementor", "Oxygen Builder"],
-    icon: Globe2,
-    link: null,
-    linkText: "Professional experience",
-  },
-];
 
 const experience = [
   {
     company: "MoveBees",
     role: "Data & Reports Analyst / Virtual Assistant",
-    period: "Jan 2024 — Present",
+    period: "2024 — Present",
     description:
-      "Maintain recurring Excel reports, sales dashboards, conversion metrics, and performance scorecards.",
+      "Excel reporting, sales performance tracking, dashboards, and scorecards.",
   },
   {
     company: "Digital Agency Support",
     role: "Junior WordPress Developer",
-    period: "Jun 2026 — Present",
+    period: "2026 — Present",
     description:
-      "Maintain WordPress websites using Elementor and Oxygen Builder, manage plugins, and publish website content.",
+      "WordPress maintenance, Elementor, Oxygen Builder, and content updates.",
   },
   {
     company: "AjileMedia",
     role: "Executive & Digital Marketing Assistant",
-    period: "Jul 2025 — Jun 2026",
+    period: "2025 — 2026",
     description:
-      "Supported executive inbox management, client communications, Google Ads, Local Services Ads, and Google Business Profile operations.",
+      "Executive support, Google Ads operations, and client communications.",
   },
   {
     company: "Forsyth Advisors",
     role: "General Virtual Assistant",
-    period: "Aug 2021 — May 2022",
+    period: "2021 — 2022",
     description:
-      "Supported CRM management, investor research, lead generation, and administrative operations.",
+      "CRM maintenance, investor research, lead generation, and administration.",
   },
 ];
 
 const skills = [
-  "Microsoft Excel",
-  "Google Sheets",
+  "Excel Reporting",
   "PivotTables & Formulas",
-  "Sales Reporting",
   "WordPress",
-  "Elementor",
-  "Oxygen Builder",
-  "Google Ads Support",
-  "Google Business Profile",
-  "CRM Management",
+  "Elementor & Oxygen",
+  "Digital Marketing",
   "Executive Assistance",
+  "CRM Management",
   "AI-Assisted Workflows",
 ];
 
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <div className="container nav">
-          <a className="logo" href="#home">
-            BF<span>.</span>
+      <header className="premium-nav">
+        <div className="premium-container nav-inner">
+          <a href="#home" className="brand">
+            BOJOURN<span>®</span>
           </a>
 
-          <nav className="nav-links" aria-label="Main navigation">
+          <nav aria-label="Main navigation">
             <a href="#about">About</a>
-            <a href="#work">Work</a>
+            <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
           </nav>
 
-          <a className="nav-contact" href="mailto:bojourn3@gmail.com">
-            Let's talk <ArrowUpRight size={15} />
+          <a className="nav-cta" href="mailto:bojourn3@gmail.com">
+            LET'S TALK <ArrowUpRight size={16} />
           </a>
         </div>
       </header>
 
-      <section className="hero container" id="home">
-        <div className="eyebrow">
-          <span className="status-dot" />
-          DIGITAL OPERATIONS · VIRTUAL ASSISTANCE
-        </div>
+      <section className="premium-hero" id="home">
+        <div className="premium-container hero-layout">
+          <div className="hero-copy">
+            <div className="availability">
+              <span className="availability-dot" />
+              DIGITAL OPERATIONS & VIRTUAL ASSISTANCE
+            </div>
 
-        <h1>
-          Making everyday
-          <br />
-          work <span>work better.</span>
-        </h1>
-
-        <p className="hero-description">
-          I'm <strong>Bojourn Franco</strong>, a digital operations and virtual
-          assistant specialist helping businesses stay organized through data
-          reporting, website management, and reliable operational support.
-        </p>
-
-        <div className="hero-actions">
-          <a className="button button-primary" href="#work">
-            Explore my work <ArrowUpRight size={17} />
-          </a>
-          <a className="button button-secondary" href="mailto:bojourn3@gmail.com">
-            Get in touch <Mail size={17} />
-          </a>
-        </div>
-
-        <div className="hero-bottom">
-          <span>
-            <MapPin size={15} /> Cagayan de Oro, Philippines
-          </span>
-          <span>Working remotely with global teams</span>
-        </div>
-      </section>
-
-      <section className="section about-section" id="about">
-        <div className="container about-grid">
-          <div>
-            <p className="section-kicker">01 / ABOUT</p>
-            <h2>
-              Practical support.
+            <h1>
+              WORK
               <br />
-              Digital thinking.
+              SMARTER<span className="hero-period">.</span>
+              <br />
+              <span className="outline-word">GO FURTHER.</span>
+            </h1>
+
+            <p className="premium-intro">
+              Hey, I'm <strong>Bojourn Franco.</strong> I help businesses
+              stay organized, maintain digital systems, and make sense of
+              their data.
+            </p>
+
+            <div className="hero-buttons">
+              <a className="lime-button" href="#projects">
+                EXPLORE MY WORK <ArrowUpRight size={18} />
+              </a>
+              <a className="hero-text-link" href="#about">
+                GET TO KNOW ME <ArrowDownRight size={18} />
+              </a>
+            </div>
+
+            <div className="hero-location">
+              <MapPin size={15} />
+              BASED IN CAGAYAN DE ORO, PHILIPPINES
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="portrait-frame">
+              <img
+                src="/portrait.png"
+                alt="Portrait of Bojourn Franco"
+                className="hero-portrait"
+              />
+              <div className="portrait-caption">
+                <span>BOJOURN FRANCO</span>
+                <span>OPERATIONS / DIGITAL / DATA</span>
+              </div>
+            </div>
+            <div className="floating-sticker">
+              <Sparkles size={19} />
+              ALWAYS
+              <br />
+              LEARNING
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-ticker" aria-hidden="true">
+          <div className="ticker-track">
+            EXCEL REPORTING ✳ WORDPRESS ✳ DIGITAL OPERATIONS ✳
+            AI-ASSISTED PROJECTS ✳ EXCEL REPORTING ✳ WORDPRESS ✳
+            DIGITAL OPERATIONS ✳ AI-ASSISTED PROJECTS ✳
+          </div>
+        </div>
+      </section>
+
+      <section className="premium-section about-premium" id="about">
+        <div className="premium-container">
+          <div className="section-label">
+            <span>01 / THE INTRODUCTION</span>
+            <span>WHO I AM</span>
+          </div>
+
+          <div className="about-premium-grid">
+            <h2>
+              NOT JUST
+              <br />
+              <span>GETTING</span>
+              <br />
+              THINGS DONE.
             </h2>
-          </div>
 
-          <div className="about-content">
-            <p>
-              I work at the intersection of business operations, reporting,
-              and digital tools. My experience spans maintaining Excel sales
-              dashboards, supporting executive workflows, and keeping
-              WordPress websites up to date.
-            </p>
-            <p>
-              I also explore AI-assisted product development, turning
-              practical ideas into useful digital projects through planning,
-              testing, and iteration.
-            </p>
+            <div className="about-premium-copy">
+              <p>
+                I'm a digital operations and virtual assistant specialist
+                working across data reporting, website management, digital
+                marketing, and executive support.
+              </p>
+              <p>
+                From maintaining Excel sales dashboards to updating
+                WordPress websites, I focus on the details that keep
+                businesses running.
+              </p>
+              <p>
+                Outside my client work, I experiment with AI-assisted
+                development to turn everyday problems into useful tools.
+              </p>
 
-            <a className="text-link" href="#experience">
-              More about my experience <ArrowUpRight size={17} />
-            </a>
+              <a href="#experience" className="underline-link">
+                EXPLORE MY BACKGROUND <ArrowUpRight size={17} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section" id="work">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="section-kicker">02 / SELECTED WORK</p>
-              <h2>Things I've worked on.</h2>
-            </div>
+      <section className="premium-section projects-premium" id="projects">
+        <div className="premium-container">
+          <div className="section-label">
+            <span>02 / SELECTED WORK</span>
+            <span>PROJECTS & EXPERIENCE</span>
+          </div>
+
+          <div className="projects-heading">
+            <h2>
+              PROOF OF
+              <br />
+              <span>WORK.</span>
+            </h2>
             <p>
-              A mix of professional workflows, practical digital skills,
-              and personal projects.
+              Real workflows, personal projects, and the digital tools
+              I work with.
             </p>
           </div>
 
-          <div className="project-grid">
-            {projects.map((project) => {
-              const Icon = project.icon;
-
-              return (
-                <article className="project-card" key={project.number}>
-                  <div className="project-top">
-                    <span>{project.number} / {project.category}</span>
-                    <Icon size={25} strokeWidth={1.5} />
-                  </div>
-
-                  <div className="project-content">
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-
-                    <div className="tags">
-                      {project.tags.map((tag) => (
-                        <span className="tag" key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="project-footer">
-                    {project.link ? (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {project.linkText} <ArrowUpRight size={17} />
-                      </a>
-                    ) : (
-                      <span>{project.linkText}</span>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section experience-section" id="experience">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="section-kicker">03 / EXPERIENCE</p>
-              <h2>Where I've contributed.</h2>
-            </div>
-            <BriefcaseBusiness size={28} strokeWidth={1.4} />
-          </div>
-
-          <div className="experience-list">
-            {experience.map((job) => (
-              <div className="experience-item" key={job.company}>
-                <div className="experience-company">
-                  <h3>{job.company}</h3>
-                  <span>{job.period}</span>
+          <article className="featured-project">
+            <div className="featured-project-visual">
+              <div className="mock-browser">
+                <div className="mock-browser-top">
+                  <span>● ● ●</span>
+                  <span>byahetabai.vercel.app</span>
                 </div>
-                <div className="experience-details">
-                  <h4>{job.role}</h4>
+                <div className="mock-browser-content">
+                  <Plane size={45} strokeWidth={1.3} />
+                  <span>BYAHETABAI</span>
+                  <h3>YOUR TRIPS.
+                    <br />ONE PLACE.</h3>
+                  <p>Plan together. Travel better.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="featured-project-info">
+              <span className="project-number">FEATURED PROJECT / 001</span>
+              <h3>BYAHETABAI<span>↗</span></h3>
+              <p>
+                A group travel planning application created through
+                AI-assisted development, bringing itineraries,
+                traveler coordination, and expense tracking together.
+              </p>
+              <div className="project-pills">
+                <span>PRODUCT PLANNING</span>
+                <span>AI-ASSISTED DEVELOPMENT</span>
+                <span>TESTING</span>
+              </div>
+              <a
+                href="https://byahetabai.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-visit"
+              >
+                EXPLORE LIVE PROJECT <ArrowUpRight size={18} />
+              </a>
+            </div>
+          </article>
+
+          <div className="secondary-projects">
+            <article className="secondary-project">
+              <div className="secondary-project-art excel-art">
+                <BarChart3 size={60} strokeWidth={1.2} />
+                <span>REPORTING / PERFORMANCE / DATA</span>
+                <div className="art-title">THE NUMBERS
+                  <br />MATTER.</div>
+              </div>
+              <div className="secondary-project-info">
+                <span>002 / DATA OPERATIONS</span>
+                <h3>Sales Performance Reporting</h3>
+                <p>
+                  Maintaining Excel dashboards, booking conversion
+                  reports, leaderboards, and sales scorecards.
+                </p>
+                <div className="project-pills">
+                  <span>EXCEL</span>
+                  <span>PIVOTTABLES</span>
+                  <span>REPORTING</span>
+                </div>
+              </div>
+            </article>
+
+            <article className="secondary-project">
+              <div className="secondary-project-art wordpress-art">
+                <Globe2 size={60} strokeWidth={1.2} />
+                <span>WEB OPERATIONS / CONTENT / CMS</span>
+                <div className="art-title">KEEPING
+                  <br />SITES FRESH.</div>
+              </div>
+              <div className="secondary-project-info">
+                <span>003 / WEB OPERATIONS</span>
+                <h3>WordPress Website Operations</h3>
+                <p>
+                  Maintaining existing WordPress websites, managing
+                  content, plugins, and visual page-builder updates.
+                </p>
+                <div className="project-pills">
+                  <span>WORDPRESS</span>
+                  <span>ELEMENTOR</span>
+                  <span>OXYGEN</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="premium-section experience-premium" id="experience">
+        <div className="premium-container">
+          <div className="section-label">
+            <span>03 / CAREER</span>
+            <span>WHERE I'VE WORKED</span>
+          </div>
+
+          <div className="experience-heading">
+            <h2>THE JOURNEY<span>.</span></h2>
+            <BriefcaseBusiness size={34} strokeWidth={1.3} />
+          </div>
+
+          <div className="premium-experience-list">
+            {experience.map((job, index) => (
+              <div className="premium-experience-row" key={job.company}>
+                <span className="experience-index">
+                  0{index + 1}
+                </span>
+                <div>
+                  <h3>{job.company}</h3>
+                  <p>{job.role}</p>
+                </div>
+                <div className="experience-right">
+                  <span>{job.period}</span>
                   <p>{job.description}</p>
                 </div>
+                <ArrowUpRight className="experience-arrow" size={21} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section skills-section" id="skills">
-        <div className="container">
-          <p className="section-kicker">04 / TOOLKIT</p>
-          <h2>Skills & tools.</h2>
+      <section className="premium-section expertise-premium">
+        <div className="premium-container">
+          <div className="section-label">
+            <span>04 / EXPERTISE</span>
+            <span>WHAT I BRING</span>
+          </div>
 
-          <div className="skills-grid">
-            {skills.map((skill) => (
-              <div className="skill-item" key={skill}>
-                <Code2 size={15} />
+          <h2>THE TOOLKIT<span>®</span></h2>
+
+          <div className="premium-skills">
+            {skills.map((skill, index) => (
+              <div key={skill} className="premium-skill">
+                <span>0{index + 1}</span>
                 {skill}
+                <ArrowRight size={17} />
               </div>
             ))}
           </div>
-
-          <div className="resume-strip">
-            <div>
-              <h3>Looking for the full picture?</h3>
-              <p>Explore my experience, responsibilities, and background.</p>
-            </div>
-            <a
-              className="button button-secondary"
-              href="mailto:bojourn3@gmail.com?subject=Resume%20Request"
-            >
-              Request my resume <Download size={17} />
-            </a>
-          </div>
         </div>
       </section>
 
-      <section className="section contact-section" id="contact">
-        <div className="container">
-          <p className="section-kicker">05 / CONTACT</p>
+      <section className="premium-contact" id="contact">
+        <div className="premium-container">
+          <div className="section-label">
+            <span>05 / LET'S CONNECT</span>
+            <span>YOUR NEXT MOVE</span>
+          </div>
+
           <h2>
-            Have something
+            LET'S MAKE
             <br />
-            in mind<span>?</span>
+            <span>IT HAPPEN.</span>
           </h2>
-          <p>
-            Whether you need reliable operations support, help with
-            reporting, or someone to keep your digital workflows moving,
-            I'd love to hear about it.
-          </p>
 
-          <a className="contact-email" href="mailto:bojourn3@gmail.com">
-            bojourn3@gmail.com <ArrowUpRight size={28} />
+          <a className="big-email" href="mailto:bojourn3@gmail.com">
+            BOJOURN3@GMAIL.COM <ArrowUpRight size={28} />
           </a>
+
+          <div className="contact-bottom">
+            <p>GOOD WORK STARTS WITH A CONVERSATION.</p>
+            <a
+              href="https://github.com/bojojojow"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github size={18} /> GITHUB
+            </a>
+          </div>
         </div>
       </section>
 
-      <footer className="site-footer">
-        <div className="container footer-inner">
-          <span>© {new Date().getFullYear()} Bojourn Franco</span>
-          <span>Built with intention.</span>
-          <div className="footer-links">
-            <a href="https://github.com/bojojojow" target="_blank" rel="noopener noreferrer">
-              <Github size={17} /> GitHub
-            </a>
-            <a href="mailto:bojourn3@gmail.com">
-              <Mail size={17} /> Email
-            </a>
-          </div>
+      <footer className="premium-footer">
+        <div className="premium-container">
+          <span>© {new Date().getFullYear()} BOJOURN FRANCO</span>
+          <span>MADE WITH CURIOSITY & INTENTION.</span>
+          <a href="#home">BACK TO TOP ↑</a>
         </div>
       </footer>
     </main>
