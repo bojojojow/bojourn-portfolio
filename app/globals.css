@@ -1663,3 +1663,81 @@ img {
   .va-real-kpis strong { font-size: 20px; }
   .va-real-table-labels, .va-real-table-row { padding-left: 6px; padding-right: 6px; }
 }
+
+
+/* BOJOURN V2: performance, accessibility and touch polish.
+   Scoped to interactive elements; existing cinematic motion stays intact. */
+.va-app-choice,
+.va-trial-tab,
+.va-app-view-switch button,
+.va-real-add,
+.va-real-add-form button,
+.va-real-status,
+.va-real-days button,
+.va-real-toggle button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.va-app-choice:focus-visible,
+.va-trial-tab:focus-visible,
+.va-app-view-switch button:focus-visible,
+.va-real-add:focus-visible,
+.va-real-add-form button:focus-visible,
+.va-real-status:focus-visible,
+.va-real-days button:focus-visible,
+.va-real-toggle button:focus-visible,
+.va-real-tools input:focus-visible,
+.va-real-tools select:focus-visible,
+.va-real-add-form input:focus-visible {
+  outline: 3px solid #537c37;
+  outline-offset: 3px;
+  position: relative;
+  z-index: 2;
+}
+.va-app-choice,
+.va-app-view-switch button,
+.va-real-status,
+.va-real-days button,
+.va-real-toggle button {
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+.va-real-demo, .va-real-main, .va-app-lab-window, .va-app-window-body {
+  min-width: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .va-real-status:hover,
+  .va-real-days button:hover,
+  .va-real-toggle button:hover { filter: brightness(.97); }
+}
+@media (hover: none) {
+  .va-app-choice:hover,
+  .va-real-add:hover,
+  .va-real-add-form button:hover,
+  .va-real-status:hover { filter: none; }
+}
+@media (max-width: 760px) {
+  /* Avoid expensive permanent compositing on long mobile pages. */
+  .va-morph-section { will-change: auto; }
+  .va-real-demo { box-shadow: none; }
+  .va-real-add,
+  .va-real-add-form button,
+  .va-real-status,
+  .va-real-toggle button,
+  .va-real-days button { min-height: 40px; }
+  .va-app-choice { min-height: 64px; }
+  .va-app-view-switch button { min-height: 40px; }
+  .va-real-tools input,
+  .va-real-tools select,
+  .va-real-add-form input { font-size: 16px; } /* Prevent iOS input zoom. */
+  .va-real-tools select { min-width: 0; }
+  .va-real-table { max-width: 100%; }
+  .va-real-table-row, .va-real-table-labels { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .va-app-choice,
+  .va-app-view-switch button,
+  .va-real-status,
+  .va-real-days button,
+  .va-real-toggle button,
+  .va-real-bars > div span { transition: none !important; }
+}
