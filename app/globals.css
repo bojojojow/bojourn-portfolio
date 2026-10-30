@@ -1,5 +1,7 @@
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 
 :root {
   --paper: #f5f5f0;
@@ -7,9 +9,11 @@
   --lime: #b9f36a;
   --muted: #70766d;
   --line: #d9ddd4;
-  --mono: 'IBM Plex Mono', monospace;
-  --display: 'Space Grotesk', sans-serif;
-  --body: 'DM Sans', sans-serif;
+  
+--mono: 'Inter', sans-serif;
+--display: 'Manrope', sans-serif;
+--body: 'Inter', sans-serif;
+
 }
 
 * {
@@ -1326,5 +1330,100 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* REFINED TYPOGRAPHY */
+
+.va-hero h1,
+.va-about h2,
+.va-work h2,
+.va-experience h2,
+.va-contact h2 {
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.va-hero h1 {
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 1.08;
+}
+
+.va-about h2,
+.va-work h2,
+.va-experience h2,
+.va-contact h2 {
+  letter-spacing: -0.05em;
+}
+
+.va-hero-description,
+.va-about-intro,
+.va-about-right > p,
+.va-project-detail > p,
+.va-contact-right > p {
+  letter-spacing: -0.015em;
+}
+
+/* REMOVE DECORATIVE TEMPLATE LABELS */
+
+.va-eyebrow,
+.va-kicker,
+.va-section-topline,
+.va-photo-side-label,
+.va-hero-bottom,
+.va-project-visual-top,
+.va-project-visual-bottom {
+  display: none;
+}
+
+/* LESS EXCESSIVE SECTION SPACING */
+
+.va-about,
+.va-work,
+.va-experience,
+.va-contact {
+  padding-top: 65px;
+  padding-bottom: 70px;
+}
+
+.va-about-layout {
+  padding-top: 0;
+}
+
+.va-work-heading,
+.va-experience-heading {
+  margin-top: 0;
+}
+
+.va-contact-grid {
+  padding-top: 0;
+}
+
+.va-project-tab {
+  font-family: var(--body);
+  font-size: 13px;
+}
+
+.va-project-detail h3 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.va-timeline-company strong {
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .va-hero h1 {
+    font-size: clamp(43px, 10vw, 68px);
+  }
+
+  .va-about,
+  .va-work,
+  .va-experience,
+  .va-contact {
+    padding-top: 50px;
+    padding-bottom: 55px;
   }
 }
