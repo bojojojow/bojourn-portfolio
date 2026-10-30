@@ -1,384 +1,520 @@
 
+"use client";
+
+import { useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
   BarChart3,
   BriefcaseBusiness,
+  Check,
+  ChevronDown,
+  Code2,
+  ExternalLink,
+  FileSpreadsheet,
   Github,
   Globe2,
   Mail,
   MapPin,
-  Plane,
+  Menu,
+  MousePointer2,
   Sparkles,
+  X,
 } from "lucide-react";
+
+const skills = [
+  "Executive & Administrative Support",
+  "Excel Reporting & Data Analysis",
+  "WordPress Website Management",
+  "Digital Marketing Support",
+  "CRM & Lead Management",
+  "Research & Operations",
+];
+
+const projects = [
+  {
+    id: "01",
+    name: "Excel Sales Reporting",
+    type: "DATA & OPERATIONS",
+    headline: "Turning numbers into clarity.",
+    description:
+      "Maintaining and updating established Excel reporting dashboards, sales scorecards, booking percentages, lead-to-booking conversion reports, and representative performance tracking. Built around accurate, useful reporting that helps teams stay informed.",
+    tags: ["Microsoft Excel", "PivotTables", "Formulas", "Reporting"],
+    link: "",
+    theme: "excel",
+    icon: FileSpreadsheet,
+  },
+  {
+    id: "02",
+    name: "WordPress Operations",
+    type: "WEBSITE MANAGEMENT",
+    headline: "Keeping websites running smoothly.",
+    description:
+      "Updating existing WordPress websites, maintaining content and plugins, publishing blog posts, and supporting site improvements using Oxygen Builder and Elementor.",
+    tags: ["WordPress", "Oxygen Builder", "Elementor", "Content"],
+    link: "",
+    theme: "wordpress",
+    icon: Globe2,
+  },
+  {
+    id: "03",
+    name: "ByaheTaBai",
+    type: "PERSONAL PROJECT",
+    headline: "An idea turned into a live product.",
+    description:
+      "An AI-assisted travel management application I planned, tested, troubleshot, and deployed. It brings together itineraries, traveler management, and expense tracking in one place.",
+    tags: ["Product Planning", "AI-Assisted Development", "Testing", "Deployment"],
+    link: "https://byahetabai.vercel.app/",
+    theme: "travel",
+    icon: Code2,
+  },
+];
 
 const experience = [
   {
     company: "MoveBees",
     role: "Data & Reports Analyst / Virtual Assistant",
-    period: "2024 — Present",
-    description:
-      "Excel reporting, sales performance tracking, dashboards, and scorecards.",
+    date: "JAN 2024 — PRESENT",
+    detail:
+      "Maintain and update existing Excel dashboards, sales scorecards, booking metrics, lead-to-booking conversion reports, and representative performance reports.",
   },
   {
     company: "Digital Agency Support",
     role: "Junior WordPress Developer",
-    period: "2026 — Present",
-    description:
-      "WordPress maintenance, Elementor, Oxygen Builder, and content updates.",
+    date: "JUN 2026 — PRESENT",
+    detail:
+      "Returned to support WordPress website operations, including updates to existing websites, content management, and site maintenance.",
   },
   {
     company: "AjileMedia",
     role: "Executive & Digital Marketing Assistant",
-    period: "2025 — 2026",
-    description:
-      "Executive support, Google Ads operations, and client communications.",
+    date: "JUL 2025 — JUN 2026",
+    detail:
+      "Supported the COO with inbox management and client communications, plus Google Ads, Local Services Ads verification, and Google Business Profile operations.",
+  },
+  {
+    company: "Digital Agency Support",
+    role: "Junior WordPress Developer",
+    date: "OCT 2024 — JUN 2025",
+    detail:
+      "Maintained existing WordPress websites using Oxygen Builder and Elementor, updated plugins, published blog content, and supported Google Business Profiles.",
   },
   {
     company: "Forsyth Advisors",
     role: "General Virtual Assistant",
-    period: "2021 — 2022",
-    description:
-      "CRM maintenance, investor research, lead generation, and administration.",
+    date: "AUG 2021 — MAY 2022",
+    detail:
+      "Provided CRM support, investor research, lead generation, and general administrative assistance.",
+  },
+  {
+    company: "Local Furniture Outlet",
+    role: "Previous Professional Experience",
+    date: "DEC 2020 — JUN 2021",
+    detail:
+      "Earlier professional experience. Additional position details can be provided upon request.",
+  },
+  {
+    company: "Concentrix",
+    role: "Previous Professional Experience",
+    date: "AUG 2020 — NOV 2020",
+    detail:
+      "Earlier professional experience. Additional position details can be provided upon request.",
+  },
+  {
+    company: "Flatworld Solutions",
+    role: "Previous Professional Experience",
+    date: "MAY 2020 — AUG 2020",
+    detail:
+      "Earlier professional experience. Additional position details can be provided upon request.",
+  },
+  {
+    company: "Teleperformance",
+    role: "Previous Professional Experience",
+    date: "JUN 2018 — APR 2020",
+    detail:
+      "Earlier professional experience. Additional position details can be provided upon request.",
+  },
+  {
+    company: "iQor",
+    role: "Previous Professional Experience",
+    date: "MAR 2018 — MAY 2018",
+    detail:
+      "Earlier professional experience. Additional position details can be provided upon request.",
   },
 ];
 
-const skills = [
-  "Excel Reporting",
-  "PivotTables & Formulas",
-  "WordPress",
-  "Elementor & Oxygen",
-  "Digital Marketing",
-  "Executive Assistance",
-  "CRM Management",
-  "AI-Assisted Workflows",
-];
-
 export default function Home() {
+  const [activeProject, setActiveProject] = useState(0);
+  const [showAllExperience, setShowAllExperience] = useState(false);
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const currentProject = projects[activeProject];
+  const ProjectIcon = currentProject.icon;
+  const visibleExperience = showAllExperience
+    ? experience
+    : experience.slice(0, 5);
+
   return (
-    <main>
-      <header className="premium-nav">
-        <div className="premium-container nav-inner">
-          <a href="#home" className="brand">
+    <main className="va-site">
+      <header className="va-header">
+        <div className="va-shell va-header-inner">
+          <a href="#home" className="va-logo">
             BOJOURN<span>®</span>
           </a>
 
-          <nav aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
+          <nav className={menuOpen ? "va-nav open" : "va-nav"}>
+            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="#work" onClick={() => setMenuOpen(false)}>Selected Work</a>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           </nav>
 
-          <a className="nav-cta" href="mailto:bojourn3@gmail.com">
-            LET'S TALK <ArrowUpRight size={16} />
+          <a className="va-header-cta" href="mailto:bojourn3@gmail.com">
+            LET'S TALK <ArrowUpRight size={15} />
           </a>
+
+          <button
+            className="va-menu-toggle"
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </header>
 
-      <section className="premium-hero" id="home">
-        <div className="premium-container hero-layout">
-          <div className="hero-copy">
-            <div className="availability">
-              <span className="availability-dot" />
-              DIGITAL OPERATIONS & VIRTUAL ASSISTANCE
+      <section id="home" className="va-hero">
+        <div className="va-shell va-hero-grid">
+          <div className="va-hero-content">
+            <div className="va-eyebrow">
+              <span className="va-status-dot" />
+              VIRTUAL ASSISTANT / DIGITAL OPERATIONS
             </div>
 
             <h1>
-              WORK
+              Your business.
               <br />
-              SMARTER<span className="hero-period">.</span>
-              <br />
-              <span className="outline-word">GO FURTHER.</span>
+              <span>My backend.</span>
             </h1>
 
-            <p className="premium-intro">
-              Hey, I'm <strong>Bojourn Franco.</strong> I help businesses
-              stay organized, maintain digital systems, and make sense of
-              their data.
+            <p className="va-hero-description">
+              Hi, I'm <strong>Bojourn.</strong> A multi-skilled Virtual
+              Assistant helping businesses stay organized, make sense of
+              their data, manage digital operations, and get things done.
             </p>
 
-            <div className="hero-buttons">
-              <a className="lime-button" href="#projects">
+            <div className="va-hero-actions">
+              <a href="#work" className="va-primary-button">
                 EXPLORE MY WORK <ArrowUpRight size={18} />
               </a>
-              <a className="hero-text-link" href="#about">
-                GET TO KNOW ME <ArrowDownRight size={18} />
+              <a href="#contact" className="va-secondary-button">
+                WORK WITH ME <ArrowRight size={17} />
               </a>
             </div>
 
-            <div className="hero-location">
-              <MapPin size={15} />
-              BASED IN CAGAYAN DE ORO, PHILIPPINES
+            <div className="va-hero-meta">
+              <span><MapPin size={14} /> CAGAYAN DE ORO, PH</span>
+              <span><span className="va-mini-dot" /> OPEN TO REMOTE OPPORTUNITIES</span>
             </div>
           </div>
 
-          <div className="hero-visual">
-            <div className="portrait-frame">
+          <div className="va-hero-photo-wrap">
+            <div className="va-photo">
               <img
                 src="/portrait.png"
-                alt="Portrait of Bojourn Franco"
-                className="hero-portrait"
+                alt="Portrait of Bojourn"
+                className="va-photo-image"
               />
-              <div className="portrait-caption">
-                <span>BOJOURN FRANCO</span>
-                <span>OPERATIONS / DIGITAL / DATA</span>
+              <div className="va-photo-bottom">
+                <span>BOJOURN / VIRTUAL ASSISTANT</span>
+                <span>001 — PROFILE</span>
               </div>
             </div>
-            <div className="floating-sticker">
-              <Sparkles size={19} />
-              ALWAYS
-              <br />
-              LEARNING
+            <div className="va-photo-stamp">
+              <Sparkles size={20} />
+              <span>YOUR EXTRA<br />PAIR OF HANDS</span>
             </div>
+            <div className="va-photo-side-label">BEHIND THE SCENES, AHEAD OF THE GAME.</div>
           </div>
         </div>
-
-        <div className="hero-ticker" aria-hidden="true">
-          <div className="ticker-track">
-            EXCEL REPORTING ✳ WORDPRESS ✳ DIGITAL OPERATIONS ✳
-            AI-ASSISTED PROJECTS ✳ EXCEL REPORTING ✳ WORDPRESS ✳
-            DIGITAL OPERATIONS ✳ AI-ASSISTED PROJECTS ✳
-          </div>
+        <div className="va-hero-bottom va-shell">
+          <span>SCROLL TO EXPLORE</span>
+          <ArrowDownRight size={18} />
+          <span>PORTFOLIO / 2026</span>
         </div>
       </section>
 
-      <section className="premium-section about-premium" id="about">
-        <div className="premium-container">
-          <div className="section-label">
-            <span>01 / THE INTRODUCTION</span>
-            <span>WHO I AM</span>
+      <section id="about" className="va-about">
+        <div className="va-shell">
+          <div className="va-section-topline">
+            <span>01 / WHAT I BRING TO THE TABLE</span>
+            <span>MORE THAN JUST ADMIN SUPPORT</span>
           </div>
 
-          <div className="about-premium-grid">
-            <h2>
-              NOT JUST
-              <br />
-              <span>GETTING</span>
-              <br />
-              THINGS DONE.
-            </h2>
+          <div className="va-about-layout">
+            <div>
+              <h2>
+                The work behind
+                <br />
+                <em>the work.</em>
+              </h2>
+              <p className="va-about-intro">
+                From executive inboxes to Excel reports and website updates,
+                I help keep the moving parts of a business moving.
+              </p>
+            </div>
 
-            <div className="about-premium-copy">
+            <div className="va-about-right">
               <p>
-                I'm a digital operations and virtual assistant specialist
-                working across data reporting, website management, digital
-                marketing, and executive support.
+                My background spans virtual assistance, reporting, website
+                operations, and digital marketing support. I enjoy figuring
+                out how things work, improving everyday processes, and
+                handling the details that make a difference.
               </p>
-              <p>
-                From maintaining Excel sales dashboards to updating
-                WordPress websites, I focus on the details that keep
-                businesses running.
-              </p>
-              <p>
-                Outside my client work, I experiment with AI-assisted
-                development to turn everyday problems into useful tools.
-              </p>
-
-              <a href="#experience" className="underline-link">
-                EXPLORE MY BACKGROUND <ArrowUpRight size={17} />
-              </a>
+              <div className="va-skills">
+                {skills.map((skill, index) => (
+                  <div className="va-skill" key={skill}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{skill}</strong>
+                    <ArrowUpRight size={15} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="premium-section projects-premium" id="projects">
-        <div className="premium-container">
-          <div className="section-label">
+      <section id="work" className="va-work">
+        <div className="va-shell">
+          <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
-            <span>PROJECTS & EXPERIENCE</span>
+            <span>OPERATIONS. INITIATIVE. EXECUTION.</span>
           </div>
 
-          <div className="projects-heading">
-            <h2>
-              PROOF OF
-              <br />
-              <span>WORK.</span>
-            </h2>
+          <div className="va-work-heading">
+            <div>
+              <p className="va-kicker">A FEW THINGS I'VE WORKED ON</p>
+              <h2>Proof of <span>work.</span></h2>
+            </div>
             <p>
-              Real workflows, personal projects, and the digital tools
-              I work with.
+              A look at the kind of work I do, from everyday business
+              operations to building something of my own.
             </p>
           </div>
 
-          <article className="featured-project">
-            <div className="featured-project-visual">
-              <div className="mock-browser">
-                <div className="mock-browser-top">
-                  <span>● ● ●</span>
-                  <span>byahetabai.vercel.app</span>
+          <div className="va-project-tabs" role="tablist" aria-label="Project selection">
+            {projects.map((project, index) => (
+              <button
+                key={project.id}
+                type="button"
+                role="tab"
+                id={`project-tab-${index}`}
+                aria-selected={activeProject === index}
+                aria-controls="project-panel"
+                tabIndex={activeProject === index ? 0 : -1}
+                className={activeProject === index ? "va-project-tab active" : "va-project-tab"}
+                onClick={() => setActiveProject(index)}
+              >
+                <span>{project.id}</span>
+                {project.name}
+                <ArrowUpRight size={17} />
+              </button>
+            ))}
+          </div>
+
+          <div
+            className={`va-project-panel ${currentProject.theme}`}
+            key={currentProject.id}
+            id="project-panel"
+            role="tabpanel"
+            aria-labelledby={`project-tab-${activeProject}`}
+          >
+            <div className="va-project-visual">
+              <div className="va-project-visual-top">
+                <span>PROJECT / {currentProject.id}</span>
+                <span>BOJOURN®</span>
+              </div>
+
+              <div className="va-project-art">
+                <div className="va-project-art-icon">
+                  <ProjectIcon size={45} strokeWidth={1.3} />
                 </div>
-                <div className="mock-browser-content">
-                  <Plane size={45} strokeWidth={1.3} />
-                  <span>BYAHETABAI</span>
-                  <h3>YOUR TRIPS.
-                    <br />ONE PLACE.</h3>
-                  <p>Plan together. Travel better.</p>
+                <span className="va-project-art-label">{currentProject.type}</span>
+                <strong>{currentProject.name}</strong>
+                <div className="va-art-lines">
+                  <span /><span /><span />
                 </div>
+              </div>
+
+              <div className="va-project-visual-bottom">
+                <span>CASE STUDY {currentProject.id} / 03</span>
+                <MousePointer2 size={18} />
               </div>
             </div>
 
-            <div className="featured-project-info">
-              <span className="project-number">FEATURED PROJECT / 001</span>
-              <h3>BYAHETABAI<span>↗</span></h3>
-              <p>
-                A group travel planning application created through
-                AI-assisted development, bringing itineraries,
-                traveler coordination, and expense tracking together.
-              </p>
-              <div className="project-pills">
-                <span>PRODUCT PLANNING</span>
-                <span>AI-ASSISTED DEVELOPMENT</span>
-                <span>TESTING</span>
+            <div className="va-project-detail">
+              <div className="va-project-detail-label">
+                <span>{currentProject.type}</span>
+                <span>{currentProject.id} / 03</span>
               </div>
+              <h3>{currentProject.headline}</h3>
+              <p>{currentProject.description}</p>
+              <div className="va-project-tags">
+                {currentProject.tags.map((tag) => <span key={tag}>{tag}</span>)}
+              </div>
+              {currentProject.link ? (
+                <a
+                  href={currentProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="va-project-link"
+                >
+                  VIEW LIVE PROJECT <ExternalLink size={17} />
+                </a>
+              ) : (
+                <span className="va-project-note">
+                  Work samples available upon request, subject to confidentiality.
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="va-project-progress">
+            <span>0{activeProject + 1} / 03</span>
+            <div className="va-progress-bars">
+              {projects.map((project, index) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  aria-label={`Show ${project.name}`}
+                  className={index === activeProject ? "active" : ""}
+                  onClick={() => setActiveProject(index)}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              className="va-next-project"
+              onClick={() => setActiveProject((activeProject + 1) % projects.length)}
+            >
+              NEXT PROJECT <ArrowRight size={17} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" className="va-experience">
+        <div className="va-shell">
+          <div className="va-section-topline">
+            <span>03 / CAREER TIMELINE</span>
+            <span>THE JOURNEY SO FAR</span>
+          </div>
+
+          <div className="va-experience-heading">
+            <div>
+              <p className="va-kicker">WHERE I'VE MADE AN IMPACT</p>
+              <h2>Experience<span>®</span></h2>
+            </div>
+            <p>
+              A mix of virtual assistance, reporting, digital operations,
+              and earlier professional roles.
+            </p>
+          </div>
+
+          <div className="va-timeline">
+            {visibleExperience.map((item, index) => (
+              <div className="va-timeline-item" key={`${item.company}-${item.date}`}>
+                <button
+                  type="button"
+                  className="va-timeline-main"
+                  aria-expanded={expandedExperience === index}
+                  onClick={() =>
+                    setExpandedExperience(expandedExperience === index ? null : index)
+                  }
+                >
+                  <span className="va-timeline-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="va-timeline-company">
+                    <strong>{item.company}</strong>
+                    <small>{item.role}</small>
+                  </span>
+                  <span className="va-timeline-date">{item.date}</span>
+                  <ChevronDown
+                    size={19}
+                    className={expandedExperience === index ? "rotated" : ""}
+                  />
+                </button>
+                {expandedExperience === index && (
+                  <div className="va-timeline-detail">
+                    <p>{item.detail}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="va-show-more"
+            type="button"
+            onClick={() => {
+              setShowAllExperience(!showAllExperience);
+              setExpandedExperience(null);
+            }}
+          >
+            {showAllExperience ? "SHOW LESS EXPERIENCE" : "VIEW ALL EXPERIENCE"}
+            {showAllExperience ? <X size={16} /> : <ArrowDownRight size={17} />}
+          </button>
+        </div>
+      </section>
+
+      <section id="contact" className="va-contact">
+        <div className="va-shell">
+          <div className="va-section-topline va-contact-line">
+            <span>04 / LET'S CONNECT</span>
+            <span>YOUR NEXT RELIABLE TEAMMATE?</span>
+          </div>
+
+          <div className="va-contact-grid">
+            <div>
+              <p className="va-kicker">GOT SOMETHING ON YOUR PLATE?</p>
+              <h2>
+                Let's make
+                <br />
+                <em>it happen.</em>
+              </h2>
+            </div>
+            <div className="va-contact-right">
+              <p>
+                Need someone dependable to handle the details, support your
+                operations, and keep things organized? I'd love to hear
+                what you're working on.
+              </p>
+              <a className="va-email-link" href="mailto:bojourn3@gmail.com">
+                bojourn3@gmail.com <ArrowUpRight size={24} />
+              </a>
               <a
-                href="https://byahetabai.vercel.app/"
+                className="va-github-link"
+                href="https://github.com/bojojojow"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-visit"
               >
-                EXPLORE LIVE PROJECT <ArrowUpRight size={18} />
+                <Github size={17} /> GITHUB <ArrowUpRight size={15} />
               </a>
             </div>
-          </article>
-
-          <div className="secondary-projects">
-            <article className="secondary-project">
-              <div className="secondary-project-art excel-art">
-                <BarChart3 size={60} strokeWidth={1.2} />
-                <span>REPORTING / PERFORMANCE / DATA</span>
-                <div className="art-title">THE NUMBERS
-                  <br />MATTER.</div>
-              </div>
-              <div className="secondary-project-info">
-                <span>002 / DATA OPERATIONS</span>
-                <h3>Sales Performance Reporting</h3>
-                <p>
-                  Maintaining Excel dashboards, booking conversion
-                  reports, leaderboards, and sales scorecards.
-                </p>
-                <div className="project-pills">
-                  <span>EXCEL</span>
-                  <span>PIVOTTABLES</span>
-                  <span>REPORTING</span>
-                </div>
-              </div>
-            </article>
-
-            <article className="secondary-project">
-              <div className="secondary-project-art wordpress-art">
-                <Globe2 size={60} strokeWidth={1.2} />
-                <span>WEB OPERATIONS / CONTENT / CMS</span>
-                <div className="art-title">KEEPING
-                  <br />SITES FRESH.</div>
-              </div>
-              <div className="secondary-project-info">
-                <span>003 / WEB OPERATIONS</span>
-                <h3>WordPress Website Operations</h3>
-                <p>
-                  Maintaining existing WordPress websites, managing
-                  content, plugins, and visual page-builder updates.
-                </p>
-                <div className="project-pills">
-                  <span>WORDPRESS</span>
-                  <span>ELEMENTOR</span>
-                  <span>OXYGEN</span>
-                </div>
-              </div>
-            </article>
           </div>
         </div>
       </section>
 
-      <section className="premium-section experience-premium" id="experience">
-        <div className="premium-container">
-          <div className="section-label">
-            <span>03 / CAREER</span>
-            <span>WHERE I'VE WORKED</span>
-          </div>
-
-          <div className="experience-heading">
-            <h2>THE JOURNEY<span>.</span></h2>
-            <BriefcaseBusiness size={34} strokeWidth={1.3} />
-          </div>
-
-          <div className="premium-experience-list">
-            {experience.map((job, index) => (
-              <div className="premium-experience-row" key={job.company}>
-                <span className="experience-index">
-                  0{index + 1}
-                </span>
-                <div>
-                  <h3>{job.company}</h3>
-                  <p>{job.role}</p>
-                </div>
-                <div className="experience-right">
-                  <span>{job.period}</span>
-                  <p>{job.description}</p>
-                </div>
-                <ArrowUpRight className="experience-arrow" size={21} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="premium-section expertise-premium">
-        <div className="premium-container">
-          <div className="section-label">
-            <span>04 / EXPERTISE</span>
-            <span>WHAT I BRING</span>
-          </div>
-
-          <h2>THE TOOLKIT<span>®</span></h2>
-
-          <div className="premium-skills">
-            {skills.map((skill, index) => (
-              <div key={skill} className="premium-skill">
-                <span>0{index + 1}</span>
-                {skill}
-                <ArrowRight size={17} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="premium-contact" id="contact">
-        <div className="premium-container">
-          <div className="section-label">
-            <span>05 / LET'S CONNECT</span>
-            <span>YOUR NEXT MOVE</span>
-          </div>
-
-          <h2>
-            LET'S MAKE
-            <br />
-            <span>IT HAPPEN.</span>
-          </h2>
-
-          <a className="big-email" href="mailto:bojourn3@gmail.com">
-            BOJOURN3@GMAIL.COM <ArrowUpRight size={28} />
-          </a>
-
-          <div className="contact-bottom">
-            <p>GOOD WORK STARTS WITH A CONVERSATION.</p>
-            <a
-              href="https://github.com/bojojojow"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github size={18} /> GITHUB
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="premium-footer">
-        <div className="premium-container">
-          <span>© {new Date().getFullYear()} BOJOURN FRANCO</span>
-          <span>MADE WITH CURIOSITY & INTENTION.</span>
+      <footer className="va-footer">
+        <div className="va-shell va-footer-inner">
+          <span>© 2026 BOJOURN®</span>
+          <span>VIRTUAL ASSISTANT / DIGITAL OPERATIONS</span>
           <a href="#home">BACK TO TOP ↑</a>
         </div>
       </footer>
