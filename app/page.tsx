@@ -228,7 +228,7 @@ function InteractiveAppPreview({ kind }: { kind: number }) {
       <div className="va-real-main">
         <div className="va-real-top"><div><span className="va-real-crumb">WORKSPACE / {labels[kind].toUpperCase()}</span><h5>{labels[kind]}</h5></div><div className="va-real-top-right"><span className="va-real-live"><span /> Interactive sandbox</span><span className="va-real-avatar">BJ</span></div></div>
         <div className="va-real-kpis">
-          <div><span>{kind === 1 ? "TOTAL RECORDED" : kind === 4 ? "ITINERARY STOPS" : "TOTAL RECORDS"}</span><strong>{kind === 1 ? `$${rows.reduce((sum, r) => sum + (r.amount || 0), 0).toLocaleString()}` : String(total).padStart(2,"0")}</strong><small>Live sample data</small></div>
+          <div><span>{kind === 1 ? "TOTAL RECORDED" : kind === 4 ? "ITINERARY STOPS" : "TOTAL RECORDS"}</span><strong>{kind === 1 ? `$${rows.reduce<number>((sum, r) => sum + ("amount" in r && typeof r.amount === "number" ? r.amount : 0), 0).toLocaleString()}` : String(total).padStart(2,"0")}</strong><small>Live sample data</small></div>
           <div><span>{["DEALS WON", "PAID ENTRIES", "CONFIRMED", "COMPLETED", "VISITED"][kind]}</span><strong>{String(completed).padStart(2,"0")}</strong><small>Click a status to update</small></div>
           <div><span>{["OPEN OPPORTUNITIES", "UNPAID ENTRIES", "AWAITING CONFIRMATION", "IN PROGRESS", "UPCOMING"][kind]}</span><strong>{String(total - completed).padStart(2,"0")}</strong><small>Automatically recalculated</small></div>
         </div>
