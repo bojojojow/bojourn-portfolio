@@ -1616,3 +1616,50 @@ img {
 .va-real-trip {display:flex;align-items:center;justify-content:space-between;gap:12px;background:#e9f1e5}.va-real-trip>div {display:flex;flex-direction:column;gap:6px}.va-real-trip>div span {font:700 9px var(--mono);color:#64845c}.va-real-trip strong {font-size:14px}.va-real-trip small {font-size:11px;color:#71846c}.va-real-trip-pill {background:#d5e9cb;padding:9px;font:700 9px var(--mono);white-space:nowrap}
 @media(max-width:760px) { .va-real-sidebar {width:40px}.va-real-main {padding:12px}.va-real-live {font-size:0}.va-real-live span {width:8px;height:8px}.va-real-kpis {gap:5px}.va-real-kpis>div {padding:9px;min-height:91px}.va-real-kpis span {font-size:8px}.va-real-kpis strong {font-size:23px}.va-real-kpis small {font-size:9px}.va-real-table-labels,.va-real-table-row {grid-template-columns:minmax(0,1fr) 85px;gap:8px;padding:10px 8px}.va-real-table-labels span:nth-child(2),.va-real-record-detail {display:none}.va-real-tools {flex-wrap:wrap}.va-real-tools select {max-width:135px}.va-real-trip-pill {display:none}.va-real-days {gap:2px}.va-real-days button {padding:7px 0}.va-real-days button span {font-size:7px} }
 @media(prefers-reduced-motion:reduce) {.va-real-bars>div span {transition:none}}
+
+/* BOJOURN: mobile-only mini-app refinements. Desktop styles unchanged. */
+@media (max-width: 760px) {
+  .va-app-lab-window { overflow: hidden; }
+  .va-app-window-body { min-width: 0; }
+  .va-real-demo { display: flex; flex-direction: column; min-width: 0; min-height: 0; box-shadow: none; border-color: #d7e0d2; }
+  .va-real-sidebar { width: 100%; min-height: 42px; padding: 5px 10px; flex-direction: row; justify-content: flex-start; gap: 8px; }
+  .va-real-logo { font-size: 16px; margin: 0 8px 0 0; }
+  .va-real-side-item { width: 32px; height: 30px; font-size: 17px; }
+  .va-real-side-bottom { margin: 0 0 0 auto; writing-mode: horizontal-tb; font-size: 8px; }
+  .va-real-main { padding: 14px 12px 16px; width: 100%; }
+  .va-real-top { margin-bottom: 14px; }
+  .va-real-top h5 { font-size: clamp(20px, 6vw, 27px); }
+  .va-real-top-right { gap: 8px; }
+  .va-real-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 17px; }
+  .va-real-kpis > div { padding: 11px 8px; min-width: 0; min-height: 100px; gap: 7px; }
+  .va-real-kpis span { font-size: 8px; line-height: 1.3; overflow-wrap: anywhere; }
+  .va-real-kpis strong { font-size: clamp(20px, 5.8vw, 26px); }
+  .va-real-kpis small { font-size: 9px; line-height: 1.35; color: #536751; }
+  .va-real-table-head { gap: 8px; }
+  .va-real-table-head strong { font-size: 13px; }
+  .va-real-add, .va-real-add-form button { padding: 10px 11px; }
+  .va-real-tools { gap: 6px; }
+  .va-real-tools input, .va-real-tools select { min-height: 40px; padding: 9px 8px; font-size: 11px; }
+  .va-real-tools select { max-width: 45%; }
+  .va-real-table-labels, .va-real-table-row { grid-template-columns: minmax(0, 1fr) minmax(78px, 95px); gap: 7px; padding: 10px 8px; }
+  .va-real-table-row { min-height: 55px; }
+  .va-real-record { gap: 6px; }
+  .va-real-record-icon { width: 26px; height: 26px; font-size: 11px; }
+  .va-real-record strong { font-size: 10px; }
+  .va-real-status { font-size: 10px; padding: 8px 4px; }
+  .va-real-hint { color: #52664f; font-size: 11px; }
+  .va-real-calendar, .va-real-chart, .va-real-trip { padding: 10px; }
+  .va-real-days { gap: 3px; }
+  .va-real-days button { min-width: 0; }
+  .va-real-bars { gap: 7px; padding-left: 3px; padding-right: 3px; }
+  .va-app-feature-strip { gap: 6px; margin-top: 14px; }
+  .va-app-feature-strip strong { width: 100%; margin-right: 0; }
+  .va-app-feature-strip > span { padding: 7px 9px; font-size: 10px; }
+  .va-app-lab-footnote, .va-trial-disclaimer { color: #4f604e; font-size: 11px; line-height: 1.65; }
+}
+@media (max-width: 360px) {
+  .va-real-main { padding: 11px 8px; }
+  .va-real-kpis > div { padding: 9px 6px; }
+  .va-real-kpis strong { font-size: 20px; }
+  .va-real-table-labels, .va-real-table-row { padding-left: 6px; padding-right: 6px; }
+}
