@@ -2,19 +2,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Bojourn Franco | Digital Operations & Virtual Assistant",
+
+export const metadata = {
+  title: "Bojourn Franco",
   description:
-    "Portfolio of Bojourn Franco, specializing in Excel reporting, WordPress website operations, digital marketing, and virtual assistance.",
-  keywords: [
-    "Bojourn Franco",
-    "Virtual Assistant",
-    "Digital Operations",
-    "Excel Reporting",
-    "WordPress",
-    "Digital Marketing",
-  ],
+    "Bojourn Franco — Virtual Assistant specializing in executive support, Excel reporting, WordPress management, and digital operations.",
 };
+
 
 export default function RootLayout({
   children,
