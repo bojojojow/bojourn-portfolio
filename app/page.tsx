@@ -157,30 +157,29 @@ export default function Home() {
   const experienceRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  // Lightweight, reversible entrance motion. Normal document flow stays intact.
-  // Visible, reversible section reveals without sticky stacking.
-  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 95%", "start 28%"] });
-  const workScroll = useScroll({ target: workRef, offset: ["start 95%", "start 28%"] });
-  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 95%", "start 28%"] });
-  const contactScroll = useScroll({ target: contactRef, offset: ["start 95%", "start 28%"] });
-  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [125, 0]);
-  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [125, 0]);
-  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [125, 0]);
-  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [125, 0]);
-  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 1], [0.88, 1]);
-  const workScale = useTransform(workScroll.scrollYProgress, [0, 1], [0.88, 1]);
-  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 1], [0.88, 1]);
-  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 1], [0.88, 1]);
-  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 1], ["inset(18% 3% 0% 3% round 36px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const workClip = useTransform(workScroll.scrollYProgress, [0, 1], ["inset(18% 3% 0% 3% round 36px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 1], ["inset(18% 3% 0% 3% round 36px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 1], ["inset(18% 3% 0% 3% round 36px)", "inset(0% 0% 0% 0% round 0px)"]);
+  // Cinematic scroll reveals in normal document flow (no pinned sections).
+  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 98%", "start 24%"] });
+  const workScroll = useScroll({ target: workRef, offset: ["start 98%", "start 24%"] });
+  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 98%", "start 24%"] });
+  const contactScroll = useScroll({ target: contactRef, offset: ["start 98%", "start 24%"] });
+  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
+  const workY = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
+  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
+  const contactY = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], [185, 55, 0]);
+  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
+  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
+  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
+  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], [0.81, 0.955, 1]);
+  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.65, 1], ["inset(22% 6% 0% 6% round 56px)", "inset(5% 1% 0% 1% round 22px)", "inset(0% 0% 0% 0% round 0px)"]);
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroTextY = useTransform(heroProgress, [0, 1], [0, -115]);
   const heroTextOpacity = useTransform(heroProgress, [0, 0.9], [1, 0.25]);
   const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -85]);
-  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.17]);
-  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -5]);
+  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.24]);
+  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -8]);
   const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.history.replaceState(null, "", window.location.pathname + window.location.search);
