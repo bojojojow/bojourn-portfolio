@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -149,6 +150,7 @@ export default function Home() {
   const [showAllExperience, setShowAllExperience] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   const currentProject = projects[activeProject];
   const ProjectIcon = currentProject.icon;
@@ -307,32 +309,47 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="va-project-tabs" role="tablist" aria-label="Project selection">
-            {projects.map((project, index) => (
-              <button
-                key={project.id}
-                type="button"
-                role="tab"
-                id={`project-tab-${index}`}
-                aria-selected={activeProject === index}
-                aria-controls="project-panel"
-                tabIndex={activeProject === index ? 0 : -1}
-                className={activeProject === index ? "va-project-tab active" : "va-project-tab"}
-                onClick={() => setActiveProject(index)}
-              >
-                <span>{project.id}</span>
-                {project.name}
-                <ArrowUpRight size={17} />
-              </button>
-            ))}
-          </div>
+          <LayoutGroup id="portfolio-project-tabs">
+            <div className="va-project-tabs" role="tablist" aria-label="Project selection">
+              {projects.map((project, index) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  role="tab"
+                  id={`project-tab-${index}`}
+                  aria-selected={activeProject === index}
+                  aria-controls="project-panel"
+                  className={activeProject === index ? "va-project-tab active" : "va-project-tab"}
+                  onClick={() => setActiveProject(index)}
+                >
+                  {activeProject === index && (
+                    <motion.span
+                      layoutId="selected-project-tab"
+                      className="va-tab-morph-bg"
+                      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 34 }}
+                    />
+                  )}
+                  <span className="va-tab-content">
+                    <span className="va-tab-number">{project.id}</span>
+                    <span>{project.name}</span>
+                    <ArrowUpRight size={17} />
+                  </span>
+                </button>
+              ))}
+            </div>
+          </LayoutGroup>
 
-          <div
+          <AnimatePresence mode="wait" initial={false}>
+          <motion.div
             className={`va-project-panel ${currentProject.theme}`}
             key={currentProject.id}
             id="project-panel"
             role="tabpanel"
             aria-labelledby={`project-tab-${activeProject}`}
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.975, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16, scale: 0.985, filter: "blur(5px)" }}
+            transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 210, damping: 27, mass: 0.9 }}
           >
             <div className="va-project-visual">
               <div className="va-project-visual-top">
@@ -382,7 +399,8 @@ export default function Home() {
                 </span>
               )}
             </div>
-          </div>
+          </motion.div>
+          </AnimatePresence>
 
           <div className="va-project-progress">
             <span>0{activeProject + 1} / 03</span>
@@ -428,7 +446,7 @@ export default function Home() {
 
           <div className="va-timeline">
             {visibleExperience.map((item, index) => (
-              <div className="va-timeline-item" key={`${item.company}-${item.date}`}>
+              <motion.div layout="position" className="va-timeline-item" key={`${item.company}-${item.date}`}>
                 <button
                   type="button"
                   className="va-timeline-main"
@@ -450,12 +468,22 @@ export default function Home() {
                     className={expandedExperience === index ? "rotated" : ""}
                   />
                 </button>
-                {expandedExperience === index && (
-                  <div className="va-timeline-detail">
-                    <p>{item.detail}</p>
-                  </div>
-                )}
-              </div>
+                <AnimatePresence initial={false}>
+                  {expandedExperience === index && (
+                    <motion.div
+                      className="va-timeline-detail"
+                      key="expanded-detail"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 250, damping: 30 }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <p>{item.detail}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </div>
 
