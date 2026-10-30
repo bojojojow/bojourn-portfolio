@@ -774,6 +774,15 @@ export default function Home() {
                 operations, and keep things organized? I'd love to hear
                 what you're working on.
               </p>
+              <div className="va-contact-services" aria-label="Ways I can help">
+                <span>EXECUTIVE SUPPORT</span>
+                <span>REPORTING & SPREADSHEETS</span>
+                <span>WEBSITE OPERATIONS</span>
+                <span>AI-ASSISTED APP PROTOTYPES</span>
+              </div>
+              <a className="va-contact-primary" href="mailto:bojourn3@gmail.com?subject=Let's%20work%20together%20%E2%80%94%20BOJOURN&body=Hi%20Bojourn%2C%0A%0AI'm%20looking%20for%20help%20with%3A%20%0A%0AMy%20timeline%3A%20%0A%0AThanks!">
+                TELL ME ABOUT YOUR PROJECT <ArrowUpRight size={18} />
+              </a>
               <a className="va-email-link" href="mailto:bojourn3@gmail.com">
                 bojourn3@gmail.com <ArrowUpRight size={24} />
               </a>
