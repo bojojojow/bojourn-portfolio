@@ -1438,27 +1438,34 @@ img {
 .va-timeline-detail { animation: none; }
 @media (prefers-reduced-motion: reduce) { .va-project-panel, .va-timeline-detail { animation: none !important; } }
 
-/* CINEMATIC SECTION MORPH — scroll progress controls each panel. */
-.va-site { overflow-x: clip; overflow-y: visible; }
+/* SCENE-BASED SCROLL MORPH — large, full-viewport takeovers */
+.va-site { overflow: visible; }
+.va-header { position: sticky; top: 0; z-index: 100; }
+.va-hero { position: sticky; top: 76px; min-height: calc(100svh - 76px); overflow: hidden; display: flex; flex-direction: column; justify-content: center; z-index: 1; }
+.va-hero-grid { width: min(1280px, calc(100% - 96px)); }
+.va-hero-content, .va-hero-photo-wrap { animation: none !important; }
 .va-morph-section {
-  position: relative;
-  transform-origin: 50% 0%;
+  position: sticky;
+  top: 76px;
+  min-height: calc(100svh - 76px);
+  transform-origin: 50% 85%;
   will-change: transform, clip-path;
   isolation: isolate;
-  backface-visibility: hidden;
+  box-shadow: 0 -28px 100px rgba(0,0,0,.24);
 }
 .va-about { z-index: 2; background: var(--paper); }
-.va-work { z-index: 3; }
+.va-work { z-index: 3; background: var(--ink); }
 .va-experience { z-index: 4; background: var(--paper); }
-.va-contact { z-index: 5; }
-/* Panels visibly overlap the preceding section during the handoff. */
-@media (min-width: 761px) {
-  .va-morph-section { margin-top: -7vh; padding-top: max(90px, 9vh); box-shadow: 0 -28px 85px rgba(0,0,0,.13); }
-  .va-hero { padding-bottom: 9vh; }
-}
+.va-contact { z-index: 5; background: var(--lime); }
+.va-footer { position: relative; z-index: 6; }
+/* Ensure the panel can actually fill a screen before its next takeover. */
+.va-about, .va-work, .va-experience, .va-contact { padding-top: max(80px, 10vh); padding-bottom: max(90px, 12vh); }
 @media (max-width: 760px) {
-  .va-morph-section { margin-top: -12px; transform-origin: 50% 0%; }
+  .va-hero { top: 66px; min-height: calc(100svh - 66px); }
+  .va-hero-grid { width: calc(100% - 36px); }
+  .va-morph-section { top: 66px; min-height: calc(100svh - 66px); }
+  .va-about, .va-work, .va-experience, .va-contact { padding-top: 60px; padding-bottom: 75px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .va-morph-section { will-change: auto; }
+  .va-hero, .va-morph-section { position: relative; top: auto; min-height: 0; will-change: auto; }
 }
