@@ -157,32 +157,29 @@ export default function Home() {
   const experienceRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  // Each section unfolds as its top crosses the viewport.
-  const aboutScroll = useScroll({ target: aboutRef, offset: ["start end", "start start"] });
-  const workScroll = useScroll({ target: workRef, offset: ["start end", "start start"] });
-  const experienceScroll = useScroll({ target: experienceRef, offset: ["start end", "start start"] });
-  const contactScroll = useScroll({ target: contactRef, offset: ["start end", "start start"] });
-  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 1], [0.83, 1]);
-  const workScale = useTransform(workScroll.scrollYProgress, [0, 1], [0.82, 1]);
-  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 1], [0.82, 1]);
-  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 1], [0.82, 1]);
-  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 1], ["inset(10% 8% round 36px)", "inset(0% 0% round 0px)"]);
-  const workClip = useTransform(workScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
-  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
-  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 1], ["inset(12% 9% round 40px)", "inset(0% 0% round 0px)"]);
-  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [110, 0]);
-  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [130, 0]);
-  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [130, 0]);
-  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [130, 0]);
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroTextY = useTransform(heroProgress, [0, 1], [0, -165]);
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.85], [1, 0.12]);
-  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -90]);
-  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 0.78]);
-  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -6]);
+  // Full-screen, reversible scene transitions: each new scene wipes over the previous.
+  const aboutScroll = useScroll({ target: aboutRef, offset: ["start end", "start 18%"] });
+  const workScroll = useScroll({ target: workRef, offset: ["start end", "start 18%"] });
+  const experienceScroll = useScroll({ target: experienceRef, offset: ["start end", "start 18%"] });
+  const contactScroll = useScroll({ target: contactRef, offset: ["start end", "start 18%"] });
+  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
+  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
+  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
+  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.7, 1], [0.76, 0.94, 1]);
+  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.35, 1], ["inset(100% 0% 0% 0% round 48px)", "inset(48% 0% 0% 0% round 40px)", "inset(0% 0% 0% 0% round 0px)"]);
+  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 1], [220, 0]);
+  const workY = useTransform(workScroll.scrollYProgress, [0, 1], [220, 0]);
+  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 1], [220, 0]);
+  const contactY = useTransform(contactScroll.scrollYProgress, [0, 1], [220, 0]);
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroTextY = useTransform(heroProgress, [0, 1], [0, -260]);
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.65], [1, 0]);
+  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -180]);
+  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.45]);
+  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -14]);
   const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.history.replaceState(null, "", window.location.pathname + window.location.search);
