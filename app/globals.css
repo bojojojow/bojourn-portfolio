@@ -1437,3 +1437,11 @@ img {
 .va-project-panel { animation: none; transform-origin: center top; }
 .va-timeline-detail { animation: none; }
 @media (prefers-reduced-motion: reduce) { .va-project-panel, .va-timeline-detail { animation: none !important; } }
+
+
+/* Fix: Let Motion control the hero scroll transforms */
+.va-hero-content,
+.va-hero-photo-wrap {
+  animation: none !important;
+}
+
