@@ -1438,10 +1438,27 @@ img {
 .va-timeline-detail { animation: none; }
 @media (prefers-reduced-motion: reduce) { .va-project-panel, .va-timeline-detail { animation: none !important; } }
 
-
-/* Fix: Let Motion control the hero scroll transforms */
-.va-hero-content,
-.va-hero-photo-wrap {
-  animation: none !important;
+/* CINEMATIC SECTION MORPH — scroll progress controls each panel. */
+.va-site { overflow-x: clip; overflow-y: visible; }
+.va-morph-section {
+  position: relative;
+  transform-origin: 50% 0%;
+  will-change: transform, clip-path;
+  isolation: isolate;
+  backface-visibility: hidden;
 }
-
+.va-about { z-index: 2; background: var(--paper); }
+.va-work { z-index: 3; }
+.va-experience { z-index: 4; background: var(--paper); }
+.va-contact { z-index: 5; }
+/* Panels visibly overlap the preceding section during the handoff. */
+@media (min-width: 761px) {
+  .va-morph-section { margin-top: -7vh; padding-top: max(90px, 9vh); box-shadow: 0 -28px 85px rgba(0,0,0,.13); }
+  .va-hero { padding-bottom: 9vh; }
+}
+@media (max-width: 760px) {
+  .va-morph-section { margin-top: -12px; transform-origin: 50% 0%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .va-morph-section { will-change: auto; }
+}
