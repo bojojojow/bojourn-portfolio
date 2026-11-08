@@ -19,29 +19,29 @@ export default function AppConceptExplorer() {
   const reduceMotion = useReducedMotion();
 
   return (
-            <div className="va-app-lab" aria-label="AI-assisted app concept explorer">
+            <div id="app-lab" className="va-app-lab" aria-label="AI-assisted app concept explorer">
               <div className="va-app-lab-heading">
                 <div>
                   <span className="va-app-lab-eyebrow">INTERACTIVE CONCEPT EXPLORER</span>
-                  <h3>What could we <em>build?</em></h3>
+                  <h3>A lab for <em>real ideas.</em></h3>
                 </div>
-                <p>Choose a business need to preview a possible app. These are illustrative concepts, not finished client products.</p>
+                <p>Five working experiments. Pick a workflow, then try the controls. Every demo runs on fictional data.</p>
               </div>
-              <div className="va-app-lab-choices" aria-label="App concepts">
+              <div className="va-app-lab-choices" role="tablist" aria-label="App concepts">
                 {appConcepts.map((concept, index) => (
-                  <button key={concept.name} type="button" className={activeConcept === index ? "va-app-choice is-active" : "va-app-choice"} aria-pressed={activeConcept === index} onClick={() => { setActiveConcept(index); setConceptView("preview"); }}>
+                  <button key={concept.name} type="button" className={activeConcept === index ? "va-app-choice is-active" : "va-app-choice"} role="tab" aria-selected={activeConcept === index} onClick={() => { setActiveConcept(index); setConceptView("preview"); }}>
                     <span>{String(index + 1).padStart(2, "0")}</span>{concept.name}
                   </button>
                 ))}
               </div>
               <div className="va-app-lab-window">
-                <div className="va-app-window-top"><span><span className="va-app-window-dot" /> BOJOURN / APP LAB</span><span>ILLUSTRATIVE DEMO</span></div>
+                <div className="va-app-window-top"><span>BOJOURN® / SOFTWARE EXPERIMENTS</span><span>05 WORKING DEMOS — LOCAL ONLY</span></div>
                 <div className="va-app-window-body">
                   <div className="va-app-window-heading">
                     <div><span className="va-app-lab-eyebrow">{appConcepts[activeConcept].type}</span><h4>{appConcepts[activeConcept].headline}</h4><p>{appConcepts[activeConcept].description}</p></div>
                     <div className="va-app-view-switch" aria-label="Concept view">
-                      <button type="button" className={conceptView === "preview" ? "is-active" : ""} aria-pressed={conceptView === "preview"} onClick={() => setConceptView("preview")}>App preview</button>
-                      <button type="button" className={conceptView === "process" ? "is-active" : ""} aria-pressed={conceptView === "process"} onClick={() => setConceptView("process")}>How I'd build it</button>
+                      <button type="button" className={conceptView === "preview" ? "is-active" : ""} aria-pressed={conceptView === "preview"} onClick={() => setConceptView("preview")}>Try the demo</button>
+                      <button type="button" className={conceptView === "process" ? "is-active" : ""} aria-pressed={conceptView === "process"} onClick={() => setConceptView("process")}>Build notes</button>
                     </div>
                   </div>
                   <AnimatePresence mode="wait" initial={false}>
