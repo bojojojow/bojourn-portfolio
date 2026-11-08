@@ -293,3 +293,66 @@
 .va-app-window-top { letter-spacing:.03em; }
 @media(max-width:760px) { .va-hero h1 {font-size:clamp(32px,7vw,46px)} .va-about h2,.va-work h2,.va-experience h2,.va-contact h2 {font-size:clamp(34px,9vw,50px)} .va-timeline::before {display:none} }
 @media(prefers-reduced-motion:reduce) { .pixel-hero-art img,.cursor-block,.va-timeline::before {animation:none!important} .pixel-selected-grid a:hover,.va-primary-button:hover,.va-secondary-button:hover,.va-project-tab:hover,.va-trial-tab:hover,.va-app-choice:hover {transform:none!important} }
+
+/* PIXEL EDITORIAL V3 — personality, asymmetry, distinct project scenes */
+:root { --v3-paper:#f3eee6; --v3-ink:#161916; --v3-green:#176e45; }
+.va-site { position:relative; }
+.va-hero h1 { font-family:'Pixelify Sans',monospace; font-weight:700; }
+.va-about h2,.va-work h2,.va-experience h2,.va-contact h2 { font-family:'Archivo',sans-serif; }
+.va-about-layout { grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); gap:clamp(30px,6vw,90px); }
+.va-about-right { min-width:0; }
+.va-portrait-window { width:min(100%,430px); margin:0 0 35px auto; background:#e6e1d6; border:2px solid #1a211a; box-shadow:8px 8px 0 #1b241d; transform-origin:55% 60%; }
+.va-portrait-title { display:flex; justify-content:space-between; align-items:center; gap:10px; background:#176e45; border-bottom:2px solid #1a211a; color:white; padding:9px 12px; font:700 11px 'Space Mono',monospace; }
+.va-portrait-led { display:inline-block; height:8px; width:8px; background:#a6dc8c; border:1px solid #1b241d; margin-right:5px; }
+.va-portrait-window img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; object-position:center 43%; image-rendering:auto; }
+.va-portrait-window figcaption { display:flex; justify-content:space-between; gap:12px; padding:10px 13px; font:700 10px 'Space Mono',monospace; border-top:2px solid #1b241d; }
+.va-portrait-window:hover { box-shadow:12px 12px 0 #1b241d; }
+.va-work { background:#f0e9de; }
+.va-work-heading h2 { transform:translateX(-.04em); }
+.va-project-panel { grid-template-columns:1.1fr .9fr; }
+.va-project-art { width:100%; max-width:470px; gap:12px; }
+.va-project-art strong { font-family:'Archivo',sans-serif; font-size:clamp(21px,2.5vw,32px); letter-spacing:-.04em; }
+.va-scene { width:100%; min-height:205px; border:2px solid #1c261e; box-shadow:5px 5px 0 rgba(15,28,18,.5); overflow:hidden; font-family:'Space Mono',monospace; }
+.va-scene-bar { display:flex; gap:14px; align-items:center; background:#263b2d; color:#f6f1e8; font:700 9px 'Space Mono',monospace; padding:9px 12px; }
+.va-scene-bar span { color:#94bd8b; }
+.va-scene-sheet { background:#f6f7ed; }
+.va-scene-sheet-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); padding:11px; gap:2px; }
+.va-scene-sheet-grid span { min-height:26px; border:1px solid #cad4c4; background:#fff; font-size:8px; display:grid; place-items:center; color:#54734d; }
+.va-scene-sheet-grid .va-scene-highlight { background:#c8e0bd; font-size:7px; font-weight:700; }
+.va-scene-sheet-foot { display:flex; justify-content:space-between; padding:0 12px 10px; font-size:8px; }
+.va-scene-sheet-foot strong { font-size:8px; color:#176e45; }
+.va-scene-browser { background:#f8f3ea; }
+.va-scene-browser-inner { display:flex; min-height:150px; }
+.va-scene-side { width:48px; flex:none; background:#283d31; display:flex; flex-direction:column; align-items:center; gap:12px; padding:12px 0; color:white; }
+.va-scene-side span { font:900 22px 'Archivo',sans-serif; }
+.va-scene-side i { display:block; width:18px; height:4px; background:#91b68e; }
+.va-scene-page { flex:1; padding:14px; }
+.va-scene-page-hero { height:55px; background:linear-gradient(120deg,#9bbb8d 0 55%,#d6d9bb 55%); }
+.va-scene-page-line { width:70%; height:7px; margin-top:10px; background:#b9c9b2; }
+.va-scene-page-line.short { width:43%; }
+.va-scene-page-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:12px; }
+.va-scene-page-cards i { height:24px; background:#e0e4d6; border:1px solid #c1cbb9; }
+.va-scene-browser-foot { display:flex; justify-content:space-between; gap:8px; background:#dce9d7; padding:8px 12px; font-size:8px; }
+.va-scene-browser-foot span { color:#176e45; }
+.va-scene-travel { background:#e7efe2; padding:14px; }
+.va-scene-travel-top { display:flex; justify-content:space-between; font-size:10px; font-weight:700; }
+.va-scene-travel-top span { font-size:8px; }
+.va-scene-route { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:21px 0; font:700 24px 'Archivo',sans-serif; }
+.va-scene-route-line { flex:1; text-align:center; color:#176e45; font-size:14px; white-space:nowrap; }
+.va-scene-travel-cards { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.va-scene-travel-cards div { display:flex; flex-direction:column; gap:8px; padding:10px; background:#f9f6ed; border:1px solid #9fb39a; font-size:8px; }
+.va-scene-travel-cards strong { font-size:11px; }
+.va-scene-travel-bottom { font-size:8px; padding-top:12px; }
+.va-project-panel.excel .va-project-visual { background:#dce7d5; }
+.va-project-panel.wordpress .va-project-visual { background:#d9d9cd; }
+.va-project-panel.travel .va-project-visual { background:#cbdcce; }
+.va-project-visual::after { opacity:.04; }
+.va-project-tab:hover { background:#d6e0d0; }
+.va-project-tab.active:hover { background:transparent; }
+.va-skill { transition:padding-left .22s steps(4,end),color .22s; }
+.va-skill:hover { padding-left:9px; color:#176e45; }
+.va-timeline-main { transition:padding-left .22s steps(4,end); }
+.va-timeline-main:hover { padding-left:12px; }
+@media (min-width:901px) { .va-about-layout > div:first-child { padding-top:clamp(30px,5vw,85px); } .va-project-panel.wordpress { grid-template-columns:.94fr 1.06fr; } .va-project-panel.travel { grid-template-columns:1.04fr .96fr; } }
+@media (max-width:760px) { .va-about-layout { grid-template-columns:1fr; } .va-portrait-window { margin:8px auto 32px; max-width:360px; } .va-project-panel { grid-template-columns:1fr!important; } .va-scene { min-height:190px; } .va-project-art { max-width:100%; } .va-scene-route { font-size:20px; } }
+@media (prefers-reduced-motion:reduce) { .va-skill,.va-timeline-main,.va-portrait-window { transition:none!important; } }
