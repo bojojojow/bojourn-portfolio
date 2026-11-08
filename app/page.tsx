@@ -148,6 +148,35 @@ const experience = [
 ];
 
 
+
+// Each transition is driven by actual page scroll progress, not an on-enter fade.
+// Sticky stages morph the same visual object across a section boundary.
+function ScrollMorphBridge({ from, to, index }: { from: string; to: string; index: number }) {
+  const track = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: track, offset: ["start end", "end start"] });
+  const scale = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0.65, 1, 1.22, 0.84, 0.55]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [-9, 0, 8]);
+  const radius = useTransform(scrollYProgress, [0, 0.48, 1], ["3px", "40px", "3px"]);
+  const x = useTransform(scrollYProgress, [0, 0.5, 1], ["-28vw", "0vw", "28vw"]);
+  const fill = useTransform(scrollYProgress, [0, 0.5, 1], ["#d9dfc8", "#176e45", "#263c30"]);
+  const firstOpacity = useTransform(scrollYProgress, [0.12, 0.35, 0.5], [1, 1, 0]);
+  const secondOpacity = useTransform(scrollYProgress, [0.5, 0.68, 0.88], [0, 1, 1]);
+  if (reduced) return <div className="v6-bridge-reduced" aria-hidden="true"><span>{String(index).padStart(2,"0")} / {to}</span></div>;
+  return <div className="v6-morph-track" ref={track} aria-hidden="true">
+    <div className="v6-morph-sticky">
+      <div className="v6-morph-index">BOJOURN / TRANSITION {String(index).padStart(2,"0")}</div>
+      <div className="v6-morph-axis"><span>{from}</span><span>↓ SCROLL TO TRANSFORM</span><span>{to}</span></div>
+      <motion.div className="v6-morph-object" style={{ scale, rotate, borderRadius: radius, x, backgroundColor: fill }}>
+        <div className="v6-morph-grid" />
+        <motion.div className="v6-morph-object-label" style={{opacity:firstOpacity}}>{from}<span>↗</span></motion.div>
+        <motion.div className="v6-morph-object-label v6-morph-object-next" style={{opacity:secondOpacity}}>{to}<span>↘</span></motion.div>
+      </motion.div>
+      <div className="v6-morph-bottom"><span>DESIGN × DEVELOPMENT × OPERATIONS</span><span>0{index} / 05</span></div>
+    </div>
+  </div>;
+}
+
 export default function Home() {
   const [activeProject, setActiveProject] = useState(0);
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -208,6 +237,7 @@ export default function Home() {
         </div>
       </section>
 
+      <ScrollMorphBridge from="INTRODUCTION" to="ABOUT" index={1} />
       <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline">
@@ -254,6 +284,7 @@ export default function Home() {
         </div>
       </motion.section>
 
+      <ScrollMorphBridge from="ABOUT" to="SELECTED WORK" index={2} />
       <motion.section ref={workRef} id="work" className="va-work va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
@@ -390,7 +421,9 @@ export default function Home() {
         </div>
       </motion.section>
 
+      <ScrollMorphBridge from="SELECTED WORK" to="WORK TRIAL + APP LAB" index={3} />
       <WorkTrial />
+      <ScrollMorphBridge from="WORK TRIAL + APP LAB" to="EXPERIENCE" index={4} />
 
       <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" {...entrance}>
         <div className="va-shell">
@@ -467,6 +500,7 @@ export default function Home() {
         </div>
       </motion.section>
 
+      <ScrollMorphBridge from="EXPERIENCE" to="CONTACT" index={5} />
       <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
