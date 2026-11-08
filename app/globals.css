@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Pixelify+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Press+Start+2P&family=DM+Sans:wght@400;500;600;700;800&display=swap');
 :root { --paper:#f3eee6; --ink:#161916; --lime:#176e45; --muted:#55564f; --line:#b8b3a9; --mono:'Space Mono',monospace; --display:'Space Mono',monospace; --body:'DM Sans',sans-serif; }
 * { box-sizing:border-box; } html {scroll-behavior:smooth;scroll-padding-top:75px} body {margin:0;background:#111;color:var(--ink);font-family:var(--body)} a {color:inherit;text-decoration:none} button {font:inherit;cursor:pointer} img {max-width:100%} button:focus-visible,a:focus-visible,input:focus-visible {outline:3px solid #168453;outline-offset:3px}
@@ -259,3 +260,36 @@
 }
 @media (prefers-reduced-motion: reduce) { .va-contact-primary { transition: none; } }
 
+
+
+/* PIXEL EDITORIAL V2 — expressive, deliberate, and executive-theme friendly */
+:root { --font-pixel:'Pixelify Sans',monospace; --font-heading:'Archivo',sans-serif; --font-reading:'Source Sans 3',sans-serif; --accent:#176e45; }
+/* Reserve pixel lettering for the identity; allow editorial type to breathe. */
+.va-hero h1 { font-family:var(--font-pixel); font-weight:700; letter-spacing:-.035em; line-height:1.06; font-size:clamp(36px,4vw,59px); }
+.va-hero-description { font-family:var(--mono); letter-spacing:-.025em; }
+.va-about h2,.va-work h2,.va-experience h2,.va-contact h2 { font-family:var(--font-heading); font-weight:900; letter-spacing:-.065em; line-height:1.04; font-size:clamp(37px,4.8vw,68px); }
+.va-trial-heading h2,.va-app-lab-heading h3 { font-family:var(--font-heading); font-weight:900; letter-spacing:-.07em; }
+.va-project-detail h3,.va-project-art h3,.va-trial-visual h3,.va-app-window-heading h4 { font-family:var(--font-heading); letter-spacing:-.055em; }
+.va-about-intro,.va-about-right>p,.va-work-heading>p,.va-experience-heading>p,.va-contact-right>p,.va-trial-steps p,.va-trial-visual p { font-family:var(--font-reading); font-size:clamp(15px,1.3vw,18px); line-height:1.7; }
+.va-logo,.va-nav a,.pixel-selected-grid strong,.va-timeline-company { font-family:var(--font-heading); }
+.va-hero { position:relative; isolation:isolate; }
+.pixel-hero-art { transform-origin:50% 65%; }
+.pixel-hero-art img { filter:drop-shadow(0 7px 0 rgba(20,30,20,.05)); animation:workspace-float 6s ease-in-out infinite; }
+.cursor-block { animation:cursor-blink 1s steps(1,end) infinite; }
+@keyframes cursor-blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+@keyframes workspace-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.pixel-selected-grid a { transition:background .18s ease,transform .18s steps(3,end); }
+.pixel-selected-grid a:hover { transform:translateY(-4px); background:rgba(23,110,69,.055); }
+.va-primary-button,.va-secondary-button { transition:transform .18s steps(3,end),box-shadow .18s ease,background .18s ease; }
+.va-primary-button:hover,.va-secondary-button:hover { transform:translate(-2px,-3px); box-shadow:4px 5px 0 #181a18; }
+.va-project-tab,.va-trial-tab,.va-app-choice { transition:transform .18s steps(3,end),background .18s ease,color .18s ease; }
+.va-project-tab:hover,.va-trial-tab:hover,.va-app-choice:hover { transform:translateY(-3px); }
+.va-project-panel { transform-origin:50% 20%; }
+.va-project-visual { position:relative; overflow:hidden; }
+.va-project-visual::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:.14; background-image:linear-gradient(transparent 50%,rgba(0,0,0,.13) 50%); background-size:100% 5px; mix-blend-mode:multiply; }
+.va-timeline { position:relative; }
+.va-timeline::before { content:''; position:absolute; top:0; bottom:0; left:12px; width:2px; background:var(--accent); transform-origin:top; animation:timeline-draw linear both; animation-timeline:view(); animation-range:entry 10% exit 90%; opacity:.45; pointer-events:none; }
+@keyframes timeline-draw { from {transform:scaleY(0)} to {transform:scaleY(1)} }
+.va-app-window-top { letter-spacing:.03em; }
+@media(max-width:760px) { .va-hero h1 {font-size:clamp(32px,7vw,46px)} .va-about h2,.va-work h2,.va-experience h2,.va-contact h2 {font-size:clamp(34px,9vw,50px)} .va-timeline::before {display:none} }
+@media(prefers-reduced-motion:reduce) { .pixel-hero-art img,.cursor-block,.va-timeline::before {animation:none!important} .pixel-selected-grid a:hover,.va-primary-button:hover,.va-secondary-button:hover,.va-project-tab:hover,.va-trial-tab:hover,.va-app-choice:hover {transform:none!important} }
