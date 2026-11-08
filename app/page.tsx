@@ -166,6 +166,7 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
   };
 
+  const entrance = reduceMotion ? {} : { initial: { opacity: 0, y: 38 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.12 }, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } };
   const currentProject = projects[activeProject];
   const ProjectIcon = currentProject.icon;
   const visibleExperience = showAllExperience
@@ -188,27 +189,27 @@ export default function Home() {
       </header>
       <section ref={heroRef} id="home" className="va-hero">
         <div className="va-shell va-hero-grid">
-          <div className="va-hero-content">
+          <motion.div className="va-hero-content" initial={reduceMotion ? false : { opacity: 0, x: -35 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75, ease: "easeOut" }}>
             <h1>Virtual Support,<br />Digital Operations,<br />and Practical Tools.<span className="cursor-block" aria-hidden="true" /></h1>
             <p className="va-hero-description">I help businesses stay organized, streamline workflows, and build useful digital solutions.</p>
             <div className="va-hero-actions">
               <a href="#work" className="va-primary-button">View Selected Work <ArrowRight size={16} /></a>
               <a href="#about" className="va-secondary-button">About Me</a>
             </div>
-          </div>
-          <div className="pixel-hero-art"><img src="/pixel-workspace.svg" alt="Pixel art desktop computer with books, coffee mug and plant" /></div>
+          </motion.div>
+          <motion.div className="pixel-hero-art" initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.94 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 0.18, duration: 0.85, ease: "easeOut" }}><img src="/pixel-workspace.svg" alt="Pixel art desktop computer with books, coffee mug and plant" /></motion.div>
         </div>
         <div className="va-shell pixel-selected-work">
           <div className="pixel-selected-heading"><span className="pixel-green-dot" /> SELECTED WORK <span className="pixel-rule" /></div>
-          <div className="pixel-selected-grid">
+          <motion.div className="pixel-selected-grid" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.55 }}>
             <a href="#work"><span>01</span><div><strong>MoveBees Reporting</strong><small>Sales data, reports, and workflow ops</small></div></a>
             <a href="#work"><span>02</span><div><strong>WordPress Operations</strong><small>Website updates, maintenance, and support</small></div></a>
             <a href="#work"><span>03</span><div><strong>ByaheTaBai</strong><small>Travel planning web app</small></div></a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section ref={aboutRef} id="about" className="va-about va-morph-section">
+      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>01 / WHAT I BRING TO THE TABLE</span>
@@ -247,9 +248,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section ref={workRef} id="work" className="va-work va-morph-section">
+      <motion.section ref={workRef} id="work" className="va-work va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
@@ -304,9 +305,9 @@ export default function Home() {
             id="project-panel"
             role="tabpanel"
             aria-labelledby={`project-tab-${activeProject}`}
-            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.975, filter: "blur(6px)" }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.975, filter: "blur(0px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16, scale: 0.985, filter: "blur(5px)" }}
+            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16, scale: 0.985, filter: "blur(0px)" }}
             transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 210, damping: 27, mass: 0.9 }}
           >
             <div className="va-project-visual">
@@ -382,11 +383,11 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <WorkTrial />
 
-      <section ref={experienceRef} id="experience" className="va-experience va-morph-section">
+      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline">
             <span>03 / CAREER TIMELINE</span>
@@ -459,9 +460,9 @@ export default function Home() {
             {showAllExperience ? <X size={16} /> : <ArrowDownRight size={17} />}
           </button>
         </div>
-      </section>
+      </motion.section>
 
-      <section ref={contactRef} id="contact" className="va-contact va-morph-section">
+      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" {...entrance}>
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
             <span>04 / LET'S CONNECT</span>
@@ -498,7 +499,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <footer className="va-footer">
         <div className="va-shell va-footer-inner">
