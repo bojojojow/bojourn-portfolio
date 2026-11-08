@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Pixelify+Sans:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Press+Start+2P&family=DM+Sans:wght@400;500;600;700;800&display=swap');
-:root { --paper:#f3eee6; --ink:#161916; --lime:#176e45; --muted:#55564f; --line:#b8b3a9; --mono:'Space Mono',monospace; --display:'Space Mono',monospace; --body:'DM Sans',sans-serif; }
+:root { --paper:#f3eee6; --ink:#161916; --lime:#176e45; --muted:#55564f; --line:#b8b3a9; --mono:ui-monospace,'Courier New',monospace; --display:'Archivo',sans-serif; --body:'Source Sans 3',sans-serif; }
 * { box-sizing:border-box; } html {scroll-behavior:smooth;scroll-padding-top:75px} body {margin:0;background:#111;color:var(--ink);font-family:var(--body)} a {color:inherit;text-decoration:none} button {font:inherit;cursor:pointer} img {max-width:100%} button:focus-visible,a:focus-visible,input:focus-visible {outline:3px solid #168453;outline-offset:3px}
 .va-site {max-width:1380px;margin:20px auto;background:var(--paper);border:1px solid #333;border-radius:12px;overflow:hidden;box-shadow:0 12px 36px #0005} .va-shell {width:min(1100px,calc(100% - 92px));margin:auto}
 .va-header {background:var(--paper)} .va-header-inner {min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:30px}.va-logo {display:flex;align-items:center;gap:13px;font-size:16px;font-weight:800;white-space:nowrap}.pixel-avatar {display:grid;place-items:center;width:39px;height:39px;font-size:24px;image-rendering:pixelated}.va-nav {display:flex;align-items:center;gap:35px}.va-nav a {font-size:13px;font-weight:800;padding:12px 0;border-bottom:3px solid transparent}.va-nav a:first-child,.va-nav a:hover {border-color:#187447}.va-menu-toggle {display:none;border:0;background:transparent}
@@ -394,3 +393,61 @@
 @media(max-width:900px){.v4-desktop-content{grid-template-columns:225px minmax(0,1fr)}.v4-file{padding:13px 8px;gap:8px}.v4-task-document{padding:25px}}
 @media(max-width:680px){.v4-trial-intro{grid-template-columns:1fr;gap:15px}.v4-desktop-content{grid-template-columns:1fr}.v4-file-browser{border-right:0;border-bottom:2px solid #1b211c;padding:12px}.v4-file-browser-heading{padding-bottom:8px}.v4-file{min-height:57px}.v4-browser-footer{display:none}.v4-task-document{min-height:0}.v4-toolbar-path{display:none}.v4-document-title{align-items:flex-start}.v4-desktop{box-shadow:4px 4px 0 #1b211c}.v4-trial-intro h2{font-size:clamp(35px,8vw,54px)}}
 @media(prefers-reduced-motion:reduce){.v4-file,.v4-task-link,.va-skill,.va-timeline-item{transition:none!important}.v4-file:hover,.v4-task-link:hover{transform:none!important}}
+
+/* V5: One coherent type scale and a retro software shell.
+   Keeps the hero's pixel display treatment intact. */
+:root { --font-pixel:'Pixelify Sans',monospace; --font-heading:'Archivo',sans-serif; --font-reading:'Source Sans 3',sans-serif; --font-ui:ui-monospace,'Courier New',monospace; --lime:#176e45; --accent:#176e45; }
+.va-site { font-family:var(--font-reading); }
+.va-site :is(p,li,small,input,select,textarea) { font-family:var(--font-reading); }
+.va-site :is(button,a) { font-family:inherit; }
+.va-site :is(.va-about h2,.va-work h2,.va-experience h2,.va-contact h2,.va-trial-heading h2,.va-app-lab-heading h3,.va-app-window-heading h4,.va-project-detail h3,.va-trial-visual h3) { font-family:var(--font-heading); letter-spacing:-.045em; }
+.va-site :is(.va-hero h1,.va-logo) { font-family:var(--font-pixel); }
+.va-site :is(.va-trial-overline,.va-app-lab-eyebrow,.va-app-window-top,.va-app-choice span,.va-app-feature-strip strong,.va-app-lab-footnote,.va-real-crumb,.va-real-table-labels,.va-real-kpis span,.va-real-side-bottom) { font-family:var(--font-ui); letter-spacing:.02em; }
+.va-site :is(.va-about,.va-work,.va-experience,.va-contact,.va-trial) { scroll-margin-top:76px; }
+/* App Lab: deliberate, compact old-computer utility rather than SaaS cards. */
+.va-app-lab { margin-top:48px; border-top:2px solid #1d241e; padding-top:24px; }
+.va-app-lab-heading { align-items:start; margin-bottom:22px; }
+.va-app-lab-heading h3 { font-size:clamp(28px,3.4vw,45px); line-height:1.08; margin-top:6px; }
+.va-app-lab-heading h3 em { color:#176e45; }
+.va-app-lab-heading > p { font-size:15px; color:#424b40; }
+.va-app-lab-eyebrow { color:#326246; font-size:10px; }
+.va-app-lab-choices { display:flex; flex-wrap:wrap; gap:0; margin:0; border:2px solid #202820; border-bottom:0; background:#d7d7cc; }
+.va-app-choice { flex:1 1 140px; min-height:53px; border:0; border-right:1px solid #9a9c8f; border-bottom:1px solid #9a9c8f; padding:10px 14px; background:#deded3; font:700 13px var(--font-reading); gap:3px; transition:background .16s,transform .16s steps(3,end); }
+.va-app-choice span { color:#5c695c; font-size:9px; }
+.va-app-choice.is-active { background:#176e45; color:#fff; border-color:#176e45; box-shadow:inset 0 -3px 0 #0c482a; }
+.va-app-choice.is-active span { color:#d6e9d8; }
+.va-app-choice:hover { background:#c9d8c6; transform:none; }
+.va-app-choice.is-active:hover { background:#176e45; }
+.va-app-lab-window { border:2px solid #202820; background:#f4f0e7; box-shadow:6px 7px 0 #b9b7a9; overflow:hidden; }
+.va-app-window-top { background:#263c30; color:#f8f5e9; padding:11px 15px; font-size:10px; }
+.va-app-window-dot { width:9px;height:9px;border-radius:0;background:#d6dfad; }
+.va-app-window-body { background:#f4f0e7; padding:clamp(15px,2.8vw,30px); }
+.va-app-window-heading { margin-bottom:20px; }
+.va-app-window-heading h4 { font-size:clamp(23px,3vw,35px); margin:7px 0; }
+.va-app-window-heading p { font-size:14px; line-height:1.6; color:#50564b; }
+.va-app-view-switch { background:#dddccf; border:1px solid #a7a99b; border-radius:0; }
+.va-app-view-switch button { font:700 12px var(--font-reading); border-radius:0; }
+.va-app-view-switch button.is-active { background:#263c30; color:white; }
+.va-app-feature-strip { border-top:1px solid #bcbcaf; padding-top:16px; }
+.va-app-feature-strip > span { border:1px solid #b7b8a9; background:transparent; padding:7px 10px; font-size:12px; }
+.va-app-real-link { background:#263c30; color:white; font-family:var(--font-ui); }
+.va-app-process { gap:0; border:1px solid #b2b4a5; }
+.va-app-process > div { background:#eeeadd; border:0; border-right:1px solid #b2b4a5; min-height:145px; }
+.va-app-process > div:last-child { border-right:0; }
+.va-app-process p { font-size:14px; }
+/* Interactive apps: reduce generic rounded dashboard treatment without changing handlers. */
+.va-real-demo { border:2px solid #293c30; box-shadow:4px 5px 0 #c0c2b5; background:#fbfaf5; }
+.va-real-sidebar { background:#263c30; }
+.va-real-main { background:#fbfaf5; }
+.va-real-kpis>div { background:#eeeadd; border:1px solid #c5c5b8; gap:10px; padding:15px; }
+.va-real-kpis strong,.va-real-top h5 { font-family:var(--font-heading); letter-spacing:-.035em; }
+.va-real-table-labels { background:#e5e3d6; color:#495b49; }
+.va-real-table { border-color:#c3c6b9; }
+.va-real-table-row { border-color:#d4d6ca; }
+.va-real-add,.va-real-add-form button { background:#263c30; color:#fff; }
+.va-real-tools input,.va-real-tools select,.va-real-add-form input { border-color:#aeb6a7; background:#fffdf7; }
+.va-real-status,.va-real-status.is-done { border-radius:0; }
+.va-real-calendar,.va-real-chart,.va-real-trip { background:#f0eee5; border-color:#c3c6b9; }
+.va-real-bars>div span { background:#447452; }
+@media(max-width:760px){ .va-app-lab-choices { display:grid;grid-template-columns:repeat(2,minmax(0,1fr)); } .va-app-choice { min-width:0; } .va-app-process { grid-template-columns:1fr; } .va-app-process>div { border-right:0; border-bottom:1px solid #b2b4a5; } .va-app-process>div:last-child {border-bottom:0} .va-app-lab-window { box-shadow:3px 4px 0 #b9b7a9; } }
+@media(prefers-reduced-motion:reduce){ .va-app-choice { transition:none!important; } }
