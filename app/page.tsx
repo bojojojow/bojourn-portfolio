@@ -94,14 +94,14 @@ const experience = [
     role: "Executive & Digital Marketing Assistant",
     date: "JUL 2025 — JUN 2026",
     detail:
-      "Supported the COO with inbox management and client communications, plus Google Ads, Local Services Ads verification, and Google Business Profile operations.",
+      "Supported the Chief Digital Officer with inbox management and client communications, plus Google Ads, Local Services Ads verification, and Google Business Profile operations.",
   },
   {
     company: "Digital Agency Support",
-    role: "Junior WordPress Developer",
+    role: "Website QA & Administrative Assistant",
     date: "OCT 2024 — JUN 2025",
     detail:
-      "Maintained existing WordPress websites using Oxygen Builder and Elementor, updated plugins, published blog content, and supported Google Business Profiles.",
+      "Managed company inboxes, reviewed service and location pages for quality and accuracy, published blog content, and supported client communication.",
   },
   {
     company: "Forsyth Advisors",
@@ -112,35 +112,35 @@ const experience = [
   },
   {
     company: "Local Furniture Outlet",
-    role: "Previous Professional Experience",
+    role: "Aftercare Executive",
     date: "DEC 2020 — JUN 2021",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Concentrix",
-    role: "Previous Professional Experience",
+    role: "Advisor — Transaction Processing",
     date: "AUG 2020 — NOV 2020",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Flatworld Solutions",
-    role: "Previous Professional Experience",
+    role: "Retention Specialist",
     date: "MAY 2020 — AUG 2020",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Teleperformance",
-    role: "Previous Professional Experience",
+    role: "Customer Service Representative → Fraud Prevention Officer",
     date: "JUN 2018 — APR 2020",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "iQor",
-    role: "Previous Professional Experience",
+    role: "Customer Sales Representative",
     date: "MAR 2018 — MAY 2018",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
@@ -160,33 +160,6 @@ export default function Home() {
   const experienceRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
-  // High-impact reversible 3D reveals, without sticky sections or forced heights.
-  const aboutScroll = useScroll({ target: aboutRef, offset: ["start 100%", "start 38%"] });
-  const workScroll = useScroll({ target: workRef, offset: ["start 100%", "start 38%"] });
-  const experienceScroll = useScroll({ target: experienceRef, offset: ["start 100%", "start 38%"] });
-  const contactScroll = useScroll({ target: contactRef, offset: ["start 100%", "start 38%"] });
-  const aboutY = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
-  const aboutScale = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
-  const aboutRotate = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
-  const aboutClip = useTransform(aboutScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const workY = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
-  const workScale = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
-  const workRotate = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
-  const workClip = useTransform(workScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const experienceY = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
-  const experienceScale = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
-  const experienceRotate = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
-  const experienceClip = useTransform(experienceScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const contactY = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [260, 85, 0]);
-  const contactScale = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [0.72, 0.91, 1]);
-  const contactRotate = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], [13, 5, 0]);
-  const contactClip = useTransform(contactScroll.scrollYProgress, [0, 0.5, 1], ["inset(28% 13% 10% 13% round 70px)", "inset(7% 3% 2% 3% round 30px)", "inset(0% 0% 0% 0% round 0px)"]);
-  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroTextY = useTransform(heroProgress, [0, 1], [0, -150]);
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.9], [1, 0.3]);
-  const heroPhotoY = useTransform(heroProgress, [0, 1], [0, -110]);
-  const heroPhotoScale = useTransform(heroProgress, [0, 1], [1, 1.32]);
-  const heroPhotoRotate = useTransform(heroProgress, [0, 1], [0, -10]);
   const goToTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     window.history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -203,95 +176,39 @@ export default function Home() {
     <main className="va-site">
       <header className="va-header">
         <div className="va-shell va-header-inner">
-          <a href="#home" onClick={goToTop} className="va-logo">
-            BOJOURN<span>®</span>
-          </a>
-
+          <a href="#home" onClick={goToTop} className="va-logo"><span className="pixel-avatar" aria-hidden="true">👨🏻‍💻</span> Bojourn Franco</a>
           <nav className={menuOpen ? "va-nav open" : "va-nav"}>
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#work" onClick={() => setMenuOpen(false)}>Selected Work</a>
+            <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
             <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+            <a href="#app-lab" onClick={() => setMenuOpen(false)}>App Lab</a>
             <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           </nav>
-
-          <a className="va-header-cta" href="mailto:bojourn3@gmail.com">
-            LET'S TALK <ArrowUpRight size={15} />
-          </a>
-
-          <button
-            className="va-menu-toggle"
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <button className="va-menu-toggle" type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
         </div>
       </header>
-
       <section ref={heroRef} id="home" className="va-hero">
         <div className="va-shell va-hero-grid">
-          <motion.div className="va-hero-content" style={reduceMotion ? undefined : { y: heroTextY, opacity: heroTextOpacity }}>
-            <div className="va-eyebrow">
-              <span className="va-status-dot" />
-              VIRTUAL ASSISTANT / DIGITAL OPERATIONS
-            </div>
-
-            <h1>
-              Your business.
-              <br />
-              <span>My backend.</span>
-            </h1>
-
-            <p className="va-hero-description">
-              Hi, I'm <strong>Bojourn.</strong> A multi-skilled Virtual
-              Assistant helping businesses stay organized, make sense of
-              their data, manage digital operations, and get things done.
-            </p>
-
+          <div className="va-hero-content">
+            <h1>Virtual Support,<br />Digital Operations,<br />and Practical Tools.<span className="cursor-block" aria-hidden="true" /></h1>
+            <p className="va-hero-description">I help businesses stay organized, streamline workflows, and build useful digital solutions.</p>
             <div className="va-hero-actions">
-              <a href="#work" className="va-primary-button">
-                EXPLORE MY WORK <ArrowUpRight size={18} />
-              </a>
-              <a href="#contact" className="va-secondary-button">
-                WORK WITH ME <ArrowRight size={17} />
-              </a>
+              <a href="#work" className="va-primary-button">View Selected Work <ArrowRight size={16} /></a>
+              <a href="#about" className="va-secondary-button">About Me</a>
             </div>
-
-            <div className="va-hero-meta">
-              <span><MapPin size={14} /> CAGAYAN DE ORO, PH</span>
-              <span><span className="va-mini-dot" /> OPEN TO REMOTE OPPORTUNITIES</span>
-            </div>
-          </motion.div>
-
-          <motion.div className="va-hero-photo-wrap" style={reduceMotion ? undefined : { y: heroPhotoY, scale: heroPhotoScale, rotate: heroPhotoRotate }}>
-            <div className="va-photo">
-              <img
-                src="/portrait.png"
-                alt="Portrait of Bojourn"
-                className="va-photo-image"
-              />
-              <div className="va-photo-bottom">
-                <span>BOJOURN / VIRTUAL ASSISTANT</span>
-                <span>BOJOURN®</span>
-              </div>
-            </div>
-            <div className="va-photo-stamp">
-              <Sparkles size={20} />
-              <span>YOUR EXTRA<br />PAIR OF HANDS</span>
-            </div>
-            <div className="va-photo-side-label">BEHIND THE SCENES, AHEAD OF THE GAME.</div>
-          </motion.div>
+          </div>
+          <div className="pixel-hero-art"><img src="/pixel-workspace.svg" alt="Pixel art desktop computer with books, coffee mug and plant" /></div>
         </div>
-        <div className="va-hero-bottom va-shell">
-          <span>SCROLL TO EXPLORE</span>
-          <ArrowDownRight size={18} />
-          <span>PORTFOLIO / 2026</span>
+        <div className="va-shell pixel-selected-work">
+          <div className="pixel-selected-heading"><span className="pixel-green-dot" /> SELECTED WORK <span className="pixel-rule" /></div>
+          <div className="pixel-selected-grid">
+            <a href="#work"><span>01</span><div><strong>MoveBees Reporting</strong><small>Sales data, reports, and workflow ops</small></div></a>
+            <a href="#work"><span>02</span><div><strong>WordPress Operations</strong><small>Website updates, maintenance, and support</small></div></a>
+            <a href="#work"><span>03</span><div><strong>ByaheTaBai</strong><small>Travel planning web app</small></div></a>
+          </div>
         </div>
       </section>
 
-      <motion.section ref={aboutRef} id="about" className="va-about va-morph-section" style={reduceMotion ? undefined : { y: aboutY, scale: aboutScale, rotateX: aboutRotate, clipPath: aboutClip } }>
+      <section ref={aboutRef} id="about" className="va-about va-morph-section">
         <div className="va-shell">
           <div className="va-section-topline">
             <span>01 / WHAT I BRING TO THE TABLE</span>
@@ -330,9 +247,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section ref={workRef} id="work" className="va-work va-morph-section" style={reduceMotion ? undefined : { y: workY, scale: workScale, rotateX: workRotate, clipPath: workClip } }>
+      <section ref={workRef} id="work" className="va-work va-morph-section">
         <div className="va-shell">
           <div className="va-section-topline va-section-topline-dark">
             <span>02 / SELECTED WORK</span>
@@ -465,11 +382,11 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <WorkTrial />
 
-      <motion.section ref={experienceRef} id="experience" className="va-experience va-morph-section" style={reduceMotion ? undefined : { y: experienceY, scale: experienceScale, rotateX: experienceRotate, clipPath: experienceClip } }>
+      <section ref={experienceRef} id="experience" className="va-experience va-morph-section">
         <div className="va-shell">
           <div className="va-section-topline">
             <span>03 / CAREER TIMELINE</span>
@@ -542,9 +459,9 @@ export default function Home() {
             {showAllExperience ? <X size={16} /> : <ArrowDownRight size={17} />}
           </button>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section ref={contactRef} id="contact" className="va-contact va-morph-section" style={reduceMotion ? undefined : { y: contactY, scale: contactScale, rotateX: contactRotate, clipPath: contactClip } }>
+      <section ref={contactRef} id="contact" className="va-contact va-morph-section">
         <div className="va-shell">
           <div className="va-section-topline va-contact-line">
             <span>04 / LET'S CONNECT</span>
@@ -581,7 +498,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <footer className="va-footer">
         <div className="va-shell va-footer-inner">
