@@ -42,7 +42,7 @@ const projects = [
     type: "DATA & OPERATIONS",
     headline: "Turning numbers into clarity.",
     description:
-      "Maintaining and updating established Excel reporting dashboards, sales scorecards, booking percentages, lead-to-booking conversion reports, and representative performance tracking. Built around accurate, useful reporting that helps teams stay informed.",
+      "Prepared and improved daily sales reports and scorecards, including booking rates and representative performance. Helped design, test, and troubleshoot partial reporting automation.",
     tags: ["Microsoft Excel", "PivotTables", "Formulas", "Reporting"],
     link: "",
     theme: "excel",
@@ -78,9 +78,9 @@ const experience = [
   {
     company: "MoveBees",
     role: "Data & Reports Analyst / Virtual Assistant",
-    date: "JAN 2024 — PRESENT",
+    date: "DATES TO CONFIRM",
     detail:
-      "Maintain and update existing Excel dashboards, sales scorecards, booking metrics, lead-to-booking conversion reports, and representative performance reports.",
+      "Prepared four daily sales reports for 11–20 representatives; improved reporting layouts, accuracy, and partial automation workflows.",
   },
   {
     company: "Digital Agency Support",
@@ -113,35 +113,35 @@ const experience = [
   {
     company: "Local Furniture Outlet",
     role: "Aftercare Executive",
-    date: "DEC 2020 — JUN 2021",
+    date: "DATES TO CONFIRM",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Concentrix",
     role: "Advisor — Transaction Processing",
-    date: "AUG 2020 — NOV 2020",
+    date: "DATES TO CONFIRM",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Flatworld Solutions",
     role: "Retention Specialist",
-    date: "MAY 2020 — AUG 2020",
+    date: "DATES TO CONFIRM",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "Teleperformance",
     role: "Customer Service Representative → Fraud Prevention Officer",
-    date: "JUN 2018 — APR 2020",
+    date: "DATES TO CONFIRM",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
   {
     company: "iQor",
     role: "Customer Sales Representative",
-    date: "MAR 2018 — MAY 2018",
+    date: "DATES TO CONFIRM",
     detail:
       "Earlier professional experience. Additional position details can be provided upon request.",
   },
@@ -168,7 +168,6 @@ export default function Home() {
 
   const entrance = reduceMotion ? {} : { initial: { opacity: 0, y: 38 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.12 }, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } };
   const currentProject = projects[activeProject];
-  const ProjectIcon = currentProject.icon;
   const visibleExperience = showAllExperience
     ? experience
     : experience.slice(0, 5);
@@ -230,6 +229,11 @@ export default function Home() {
             </div>
 
             <div className="va-about-right">
+              <motion.figure className="va-portrait-window" initial={reduceMotion ? false : { opacity: 0, y: 45, rotate: -3 }} whileInView={{ opacity: 1, y: 0, rotate: -1.5 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
+                <div className="va-portrait-title"><span className="va-portrait-led" /> BOJOURN.JPG <span>— □ ×</span></div>
+                <img src="/bojourn-pixel-portrait.png" alt="Pixel-art portrait of Bojourn Franco inside a retro computer window" loading="lazy" />
+                <figcaption>THE HUMAN BEHIND THE WORK <span>↗</span></figcaption>
+              </motion.figure>
               <p>
                 My background spans virtual assistance, reporting, website
                 operations, and digital marketing support. I enjoy figuring
@@ -317,14 +321,15 @@ export default function Home() {
               </div>
 
               <div className="va-project-art">
-                <div className="va-project-art-icon">
-                  <ProjectIcon size={45} strokeWidth={1.3} />
-                </div>
+                {currentProject.theme === "excel" ? (
+                  <div className="va-scene va-scene-sheet" aria-hidden="true"><div className="va-scene-bar"><span>● ● ●</span> sales-report.xlsx</div><div className="va-scene-sheet-grid">{Array.from({length: 28}, (_,i) => <span key={i} className={i % 7 === 0 ? "va-scene-highlight" : ""}>{i % 7 === 0 ? ["LEADS","BOOKED","RATE","SALES"][Math.floor(i/7)] : i % 4 === 0 ? "•••" : ""}</span>)}</div><div className="va-scene-sheet-foot">REPORT STATUS <strong>READY ✓</strong></div></div>
+                ) : currentProject.theme === "wordpress" ? (
+                  <div className="va-scene va-scene-browser" aria-hidden="true"><div className="va-scene-bar"><span>● ● ●</span> client-site.com / dashboard</div><div className="va-scene-browser-inner"><div className="va-scene-side"><span>W</span><i/><i/><i/></div><div className="va-scene-page"><div className="va-scene-page-hero"/><div className="va-scene-page-line"/><div className="va-scene-page-line short"/><div className="va-scene-page-cards"><i/><i/><i/></div></div></div><div className="va-scene-browser-foot">PLUGINS UPDATED <span>● SITE ONLINE</span></div></div>
+                ) : (
+                  <div className="va-scene va-scene-travel" aria-hidden="true"><div className="va-scene-travel-top">BYAHETABAI <span>TRIP OS ↗</span></div><div className="va-scene-route"><span>SHA</span><div className="va-scene-route-line">✦ ─ ─ ─ ✦</div><span>HRB</span></div><div className="va-scene-travel-cards"><div>ITINERARY<strong>08 DAYS</strong></div><div>TRAVELERS<strong>GROUP VIEW</strong></div></div><div className="va-scene-travel-bottom">PLAN • TRACK • EXPLORE</div></div>
+                )}
                 <span className="va-project-art-label">{currentProject.type}</span>
                 <strong>{currentProject.name}</strong>
-                <div className="va-art-lines">
-                  <span /><span /><span />
-                </div>
               </div>
 
               <div className="va-project-visual-bottom">
